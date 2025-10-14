@@ -1,48 +1,53 @@
 package com.sdsu.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter; //used for formatting and julianDate calculations
 
 @Entity
-public class CalendarEvent{
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class CalendarEvent{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
+
+    //@OneToOne ---> remember to do this tomorrow
+    //private User user
     private String date;
-    private long julianDate;
+    private long julianDate;               // can use this for quick searching
     private String startTime;
     private String endTime;
     private String title;
+    private int priority;                   //use for print order logic or whatever
 
+    @ManyToOne                              //link to calendar entity
+    @JoinColumn(name = "calendar_id")
+    private Calendar calendar;
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyy-MM-dd");
+    @Transient
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    @Transient //prevents jakarta keeping these up
     private static final long JULIAN_EPOCH_OFFSET = 2440588L; //converts epoch time to Julian and vice versa
 
     public CalendarEvent(){}
 
-    public CalendarEvent(String date, String startTime, String endTime, String title) {
+    public CalendarEvent(String date, String startTime, String endTime, String title, Calendar calendar) {
         setDateFromString(date);
         this.startTime = startTime;
         this.endTime = endTime;
         this.title = title;
+        this.calendar = calendar;
     }
 
     // start getters/setters
     public Long getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(String id) {
-        this.Id = Id;
-    }
 
-        //overlap with date setters ensures that whenever one is changed, both are changed
+        //overlap with date setters ensures that whenever one is changed, both are changed. Prevents logic confusion
     public void setDateFromString(String dateStr){ //takes string input, sets both dates
         this.date = dateStr;
         this.julianDate = toJulian(dateStr);
@@ -85,7 +90,15 @@ public class CalendarEvent{
         this.title = title;
     }
 
+    public void setCalendar(Calendar calendar){ // needed for helper
+        this.calendar = calendar;
+    }
+
+    public abstract int getPriority();
+
     // end getters/setters
+
+    // vvv Util methods to convert back and forth to and from Julian
 
     private  long toJulian (String dateStr){
         LocalDate date = LocalDate.parse(dateStr, FORMATTER);
