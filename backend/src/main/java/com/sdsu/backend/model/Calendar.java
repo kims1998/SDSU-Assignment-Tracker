@@ -11,31 +11,37 @@ public class Calendar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
+    // once user class is finished do the following:
+    //@OneToOne
+    //@JoinColumn(name = "user_id")
+    // private User user;
     @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<CalendarEvent> calendarEvents = new HashSet<>();
+    private boolean isShareable;
 
     public Calendar (){}
 
-
-    public Calendar(Long userId) {
-        this.userId = userId;
-    }
+    //CODE FOR AFTER USER HERE vvv
+    //public Calendar (User user){
+    // create blank calendarEvents
+    // set isSharable to false
+    // Id is covered by @Id
+    //}
 
     public Long getId() {
         return id;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public Set<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
+    }
+
+    public boolean getIsSharable (){
+        return isShareable;
+    }
+
+    public void setIsSharable(boolean share){
+        isShareable = share;
     }
 
     public void addCalendarEvent(CalendarEvent cEvent){ //helper method ==> helps keep oneToMany/manyToOne
@@ -44,5 +50,3 @@ public class Calendar {
     }
 
 }
-
-

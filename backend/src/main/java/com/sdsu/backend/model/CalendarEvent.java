@@ -13,12 +13,10 @@ public abstract class CalendarEvent{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@OneToOne ---> remember to do this tomorrow
-    //private User user
     private String date;
-    private long julianDate;               // can use this for quick searching
-    private String startTime;
-    private String endTime;
+    private long epochDate;               // can use this for quick searching
+    private double startTime;
+    private double endTime;
     private String title;
     private int priority;                   //use for print order logic or whatever
 
@@ -28,13 +26,19 @@ public abstract class CalendarEvent{
 
     @Transient
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    @Transient //prevents jakarta keeping these up
-    private static final long JULIAN_EPOCH_OFFSET = 2440588L; //converts epoch time to Julian and vice versa
 
-    public CalendarEvent(){}
+    public CalendarEvent(){} //mt constructor for Springy Boi
 
-    public CalendarEvent(String date, String startTime, String endTime, String title, Calendar calendar) {
+    public CalendarEvent(String date, double startTime, double endTime, String title, Calendar calendar) { //constructor for humans
         setDateFromString(date);
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.title = title;
+        this.calendar = calendar;
+    }
+
+    public CalendarEvent(Long date, double startTime, double endTime, String title, Calendar calendar) { //constructor for machine
+        setDateFromEpoch(date);
         this.startTime = startTime;
         this.endTime = endTime;
         this.title = title;
@@ -50,35 +54,35 @@ public abstract class CalendarEvent{
         //overlap with date setters ensures that whenever one is changed, both are changed. Prevents logic confusion
     public void setDateFromString(String dateStr){ //takes string input, sets both dates
         this.date = dateStr;
-        this.julianDate = toJulian(dateStr);
+        this.epochDate = toEpoch(dateStr);
     }
 
-    public void setDateFromJul(long dateJul){ //takes julian date input, sets both dates
-        this.julianDate = dateJul;
-        this.date = fromJulian(dateJul);
+    public void setDateFromEpoch(long dateJul){ //takes julian date input, sets both dates
+        this.epochDate = dateJul;
+        this.date = fromEpoch(dateJul);
     }
 
     public String getDate() {
         return date;
     }
 
-    public Long getJulianDate() {
-        return julianDate;
+    public Long getEpochDate() {
+        return epochDate;
     }
 
-    public String getStartTime() {
+    public double getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(double startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public double getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(double endTime) {
         this.endTime = endTime;
     }
 
@@ -100,13 +104,12 @@ public abstract class CalendarEvent{
 
     // vvv Util methods to convert back and forth to and from Julian
 
-    private  long toJulian (String dateStr){
+    private  long toEpoch(String dateStr){
         LocalDate date = LocalDate.parse(dateStr, FORMATTER);
-        return date.toEpochDay() + JULIAN_EPOCH_OFFSET;
+        return date.toEpochDay();
     }
-    private String fromJulian (long julDate){
-        long epochDay = julDate - JULIAN_EPOCH_OFFSET;
-        LocalDate date = LocalDate.ofEpochDay(epochDay);
+    private String fromEpoch(long epochIn){
+        LocalDate date = LocalDate.ofEpochDay(epochIn);
         return date.format(FORMATTER);
     }
 }
