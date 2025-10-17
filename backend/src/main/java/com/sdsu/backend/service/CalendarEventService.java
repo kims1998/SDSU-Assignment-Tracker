@@ -4,31 +4,64 @@ import com.sdsu.backend.model.CalendarEvent;
 import com.sdsu.backend.repository.CalendarEventRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CalendarEventService {
+
     private final CalendarEventRepository calEvRepo;
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public CalendarEventService(CalendarEventRepository calEvRepo){
         this.calEvRepo = calEvRepo;
     }
 
-    public List<CalendarEvent> getByEpochDate(Long calendarID, long epochDate){
-        return calEvRepo.findByCalendarIdAndEpochDate(calendarID, epochDate);
+    public CalendarEvent save(CalendarEvent calendarEvent){
+        if (calendarEvent == null){
+            throw new IllegalArgumentException("CalendarEvent must not be null");
+        }
+        if (calendarEvent.getCalendar() == null){
+            throw new IllegalArgumentException("CalendarEvent must be associated with Calendar");
+        }
+        if (calendarEvent.getTitle() == null || calendarEvent.getTitle().isEmpty()){
+            throw new IllegalArgumentException("CalendarEvent must have a valid title");
+        }
+        return calEvRepo.save(calendarEvent);
     }
 
-    public CalendarEvent save(CalendarEvent event){
-        return calEvRepo.save(event);
+    public Optional<CalendarEvent> getByName(Long calendarId, String title){
+        return calEvRepo.findByCalendarIdAndTitle(calendarId,title);
     }
 
-    public void deleteById(long id){
+    public List<CalendarEvent> getByEpochDate(Long calendarId, long epochDate){
+        return calEvRepo.findByCalendarIdAndEpochDate(calendarId, epochDate);
+    }
+
+    public List<CalendarEvent> getByStringDate(Long calendarId, String dateStr){
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateStr, FORMATTER);
+        }
+        catch (DateTimeParseException e){
+            throw new IllegalArgumentException("Invalid date format. Expect yyyy-MM-dd");
+        }
+        long longDate = date.toEpochDay();                                      //you can use .toEpochDay() elsewhere to find start for inputs btw
+        return calEvRepo.findByCalendarIdAndEpochDate(calendarId, longDate);    //converts to long, then passes through epochdate
+    }
+
+    public List<CalendarEvent> getByDateRange(Long calendarId, long dateStart, long dateEnd){ //use epochdate to epochdate+6 for a week
+        return calEvRepo.findByCalendarIdAndEpochDateBetween(calendarId, dateStart, dateEnd);
+    }
+
+    public void deleteById(Long id){
         calEvRepo.deleteById(id);
     }
 
-    //create methods to make new CalendarEvents
-    //ensure that method to create SchoolClass events iterates upon epochDate
-    //make method that returns List of all CalendarEvents on the same epochDate
-    //make method that returns ordered List of all calendarDays from 0 to 7 [i.e week]
+    public Optional<CalendarEvent> findById (Long id){ return calEvRepo.findById(id);}
 
 }

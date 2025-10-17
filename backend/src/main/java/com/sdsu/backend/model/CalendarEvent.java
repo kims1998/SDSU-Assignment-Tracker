@@ -57,9 +57,9 @@ public abstract class CalendarEvent{
         this.epochDate = toEpoch(dateStr);
     }
 
-    public void setDateFromEpoch(long dateJul){ //takes julian date input, sets both dates
-        this.epochDate = dateJul;
-        this.date = fromEpoch(dateJul);
+    public void setDateFromEpoch(long epoch){ //takes julian date input, sets both dates
+        this.epochDate = epoch;
+        this.date = fromEpoch(epoch);
     }
 
     public String getDate() {
@@ -97,6 +97,8 @@ public abstract class CalendarEvent{
     public void setCalendar(Calendar calendar){ // needed for helper
         this.calendar = calendar;
     }
+
+    public Calendar getCalendar(){ return calendar;}
 
     public abstract int getPriority();
 
