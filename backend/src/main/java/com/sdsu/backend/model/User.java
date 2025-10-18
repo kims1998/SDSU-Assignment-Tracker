@@ -1,8 +1,6 @@
 package com.sdsu.backend.model;
 
-import jakarta.persistance.*;
-
-
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -15,8 +13,13 @@ public class User {
     private String password;
     private String name;
 
-    @OneToOne(mapped by = "calendar")
-    private Calendar calendar;
+    // VVV ||CALENDAR 1-1 || VVV
+
+    // @OneToOne(mappedBy = "calendar")
+    // private Calendar calendar;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserSettings userSettings;
 
     public User(){}
 
@@ -27,20 +30,30 @@ public class User {
     }
 
     public String getUsername(){
-        return username;
+        return name;
     }
 
     public String getEmail(){
         return email;
     }
 
-    public void setPassword(){
-        
+    public void setUsername(String name){
+        this.name = name;
     }
 
-    public void setEmail(){
-
+    public void setPassword(String password){
+        this.password = password;
     }
 
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public void setUserSettings(UserSettings userSettings){
+        this.userSettings = userSettings;
+        if (userSettings != null){
+            userSettings.setUser(this);
+        }
+    }
 
 }
