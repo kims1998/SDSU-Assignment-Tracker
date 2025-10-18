@@ -54,9 +54,25 @@ public class CalendarEventService {
         return calEvRepo.findByCalendarIdAndEpochDate(calendarId, longDate);    //converts to long, then passes through epochdate
     }
 
-    public List<CalendarEvent> getByDateRange(Long calendarId, long dateStart, long dateEnd){ //use epochdate to epochdate+6 for a week
+    public List<CalendarEvent> getByDateRangeEpoch(Long calendarId, long dateStart, long dateEnd){ //use epochdate to epochdate+6 for a week
         return calEvRepo.findByCalendarIdAndEpochDateBetween(calendarId, dateStart, dateEnd);
     }
+
+    public List<CalendarEvent> getByDateRangeEpoch(Long calendarId, String dateStart, String dateStop){
+        LocalDate dateBegin;
+        LocalDate dateEnd;
+        try{
+            dateBegin = LocalDate.parse(dateStart, FORMATTER);
+            dateEnd = LocalDate.parse(dateStop, FORMATTER);
+        }
+        catch (DateTimeParseException e){
+            throw new IllegalArgumentException("Invalid date format. Expect yyy-MM-dd");
+        }
+        long begin_num = dateBegin.toEpochDay();
+        long end_num = dateEnd.toEpochDay();
+        return calEvRepo.findByCalendarIdAndEpochDateBetween(calendarId, begin_num, end_num);
+    }
+
 
     public void deleteById(Long id){
         calEvRepo.deleteById(id);
