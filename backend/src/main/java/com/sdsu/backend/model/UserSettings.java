@@ -1,4 +1,5 @@
 package com.sdsu.backend.model;
+import jakarta.persistence.*;
 
 @Entity
 public class UserSettings extends User {
