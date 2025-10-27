@@ -1,54 +1,57 @@
-package com.sdsu.backend.model;
-import jakarta.persistence.*;
+// =======================================================
+// COMMENTED OUT FOR NOW RUNNING INTO UNKNOWN ERRORS/ MISSING IMPLEMENTATION?
+// =======================================================
 
-@Entity
-public class UserSettings extends User {
+// package com.sdsu.backend.model;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+// @Entity
+// public class UserSettings extends User {
 
-    private boolean darkMode;
-    private boolean notifications;
+// @Id
+// @GeneratedValue(strategy = GenerationType.IDENTITY)
+// private Long id;
 
-    @OneToOne
-    // @JoinColumn(name = "user_id", referencedColumn = "id")
-    private User user;
+// private boolean darkMode;
+// private boolean notifications;
 
-    public UserSettings(){}
+// @OneToOne
+// // @JoinColumn(name = "user_id", referencedColumn = "id")
+// private User user;
 
-    public UserSettings(User user, boolean darkMode, boolean notifications){
-        this.user = user;
-        this.darkMode = darkMode;
-        this.notifications = notifications;
-    }
+// public UserSettings(){}
 
-    public Long getId(){
-        return id;
-    }
+// public UserSettings(User user, boolean darkMode, boolean notifications){
+// this.user = user;
+// this.darkMode = darkMode;
+// this.notifications = notifications;
+// }
 
-    public boolean isDarkMode(){
-        return darkMode;
-    }
+// public Long getId(){
+// return id;
+// }
 
-    public void setDarkMode(boolean darkMode){
-        this.darkMode = darkMode;
-    }
+// public boolean isDarkMode(){
+// return darkMode;
+// }
 
-    public boolean isNotifications(){
-        return notifications;
-    }
+// public void setDarkMode(boolean darkMode){
+// this.darkMode = darkMode;
+// }
 
-    public void setNotifications(boolean notifications){
-        this.notifications = notifications;
-    }
+// public boolean isNotifications(){
+// return notifications;
+// }
 
-    public User getUser(){
-        return user;
-    }
+// public void setNotifications(boolean notifications){
+// this.notifications = notifications;
+// }
 
-    public void setUser(User user){
-        this.user = user;
-    }
-    
-}
+// public User getUser(){
+// return user;
+// }
+
+// public void setUser(User user){
+// this.user = user;
+// }
+
+// }

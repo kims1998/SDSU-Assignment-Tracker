@@ -1,0 +1,366 @@
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard-header-new {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.dashboard-header-new h1 {
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.calendar-id {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.controls {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn {
+    background: #A6192E;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #8B1425;
+}
+
+.btn-delete {
+    background: #ef4444;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.filter-buttons {
+    margin-top: 15px;
+}
+
+.filter-btn {
+    background: #f3f4f6;
+    color: #333;
+    border: 2px solid transparent;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.filter-btn.active {
+    background: #A6192E;
+    color: white;
+    border-color: #A6192E;
+}
+
+.events-grid {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.event-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-left: 5px solid #A6192E;
+}
+
+.event-card.assignment {
+    border-left-color: #000000;
+}
+
+.event-card.school-class {
+    border-left-color: #A6192E;
+}
+
+.event-card.special-event {
+    border-left-color: #CC5500;
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 10px;
+}
+
+.event-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.event-type {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.type-assignment {
+    background: #2d2d2d;
+    color: #ffffff;
+}
+
+.type-class, .type-school-class {
+    background: #ffd4d4;
+    color: #8B1425;
+}
+
+.type-special, .type-special-event {
+    background: #ffe5cc;
+    color: #994400;
+}
+
+.event-details {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.event-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.priority-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.priority-1 { background: #ffe5e5; color: #8B1425; }
+.priority-2 { background: #fff4e5; color: #994400; }
+.priority-3 { background: #f0f0f0; color: #2d2d2d; }
+
+.error-message {
+    background-color: #ff4444;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.empty-state {
+    background: white;
+    padding: 60px 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #666;
+}
+
+.empty-state-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: #A6192E;
+}
+
+/* Calendar Styles */
+.calendar-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+    color: #333;
+    margin: 0;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.calendar-nav button {
+    background: #f3f4f6;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.calendar-nav button:hover {
+    background: #A6192E;
+    color: white;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day-header {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.calendar-day {
+    min-height: 100px;
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.calendar-day:hover {
+    border-color: #A6192E;
+    background: #fff5f5;
+}
+
+.calendar-day.other-month {
+    background: #f9fafb;
+    opacity: 0.5;
+}
+
+.calendar-day.today {
+    background: #ffe5e5;
+    border-color: #A6192E;
+    border-width: 3px;
+}
+
+.calendar-day-number {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.calendar-day.today .calendar-day-number {
+    color: #A6192E;
+}
+
+.calendar-event-dot {
+    width: 100%;
+    padding: 2px 4px;
+    margin-bottom: 2px;
+    border-radius: 3px;
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.calendar-event-dot.assignment {
+    background: #2d2d2d;
+    color: white;
+}
+
+.calendar-event-dot.school-class {
+    background: #A6192E;
+    color: white;
+}
+
+.calendar-event-dot.special-event {
+    background: #CC5500;
+    color: white;
+}
+
+.calendar-event-count {
+    font-size: 10px;
+    color: #666;
+    margin-top: 4px;
+    text-align: center;
+}

@@ -4,10 +4,19 @@ import './LoginSignup.css'
 import user_icon from '../Assets/person.png'
 import email_icon from '../Assets/email.png'
 import password_icon from '../Assets/password.png'
+import { useNavigate } from 'react-router-dom';
 
 const LoginSignup = () => {
 
     const [action, setAction] = useState("Sign Up");
+    // ADDED THIS 21OCT2025 TO NAGIVATE FROM / -> /LOGIN -> /DASHBOARD
+    const navigate = useNavigate()
+
+    // 21OCT2025 ADDED NAVIAGTE FUNCION
+        // ADD THIS FUNCTION
+    const goToDashboard = () => {
+        navigate('/dashboard');
+    };
 
   return (
     <div className='container'>
@@ -38,8 +47,30 @@ const LoginSignup = () => {
             <div className={action==="Sign Up"?"submit gray":"submit"} onClick={()=>{setAction("Login")}}>Login</div>
         </div>
 
-    </div>
-  )
+        {/*21OCT2025 ADDED BUTTON */}
+                    {/* ADD THIS BUTTON */}
+            <div style={{marginTop: '20px', textAlign: 'center'}}>
+                <button 
+                    onClick={goToDashboard}
+                    style={{
+                        padding: '10px 20px',
+                        backgroundColor: '#d41736',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                        fontSize: '16px'
+                    }}
+                >
+                    Go to Dashboard (Skip Login)
+                </button>
+            </div>
+        </div>
+    );
 }
+
+
+
+
 
 export default LoginSignup
