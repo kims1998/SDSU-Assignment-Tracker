@@ -3,24 +3,22 @@ package com.sdsu.backend.model;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; /* 21OCT2025 Added this import due to Calendar and CalendarEvent
                                                               referencing each other when converting to JSON */
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter; //used for formatting and julianDate calculations
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonIgnoreProperties({ "calendar" }) // 21OCT2025 Added this annotation to ignore calendar field in JSON
+@JsonIgnoreProperties({ "calendar" }) //ignores calendar field in JSON
 public abstract class CalendarEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String date;
     private long epochDate; // can use this for quick searching
+    private String date;
+    private String title;
     private double startTime;
     private double endTime;
-    private String title;
     private int priority; // use for print order logic or whatever
 
     @ManyToOne // link to calendar entity
@@ -33,8 +31,8 @@ public abstract class CalendarEvent {
     public CalendarEvent() {
     } // mt constructor for Springy Boi
 
-    public CalendarEvent(String date, double startTime, double endTime, String title, Calendar calendar) { // constructor
-                                                                                                           // for humans
+    //Constructor for humans
+    public CalendarEvent(String date, double startTime, double endTime, String title, Calendar calendar) {
         setDateFromString(date);
         this.startTime = startTime;
         this.endTime = endTime;
@@ -42,8 +40,8 @@ public abstract class CalendarEvent {
         this.calendar = calendar;
     }
 
-    public CalendarEvent(Long date, double startTime, double endTime, String title, Calendar calendar) { // constructor
-                                                                                                         // for machine
+    //Constructor for machines
+    public CalendarEvent(Long date, double startTime, double endTime, String title, Calendar calendar) {
         setDateFromEpoch(date);
         this.startTime = startTime;
         this.endTime = endTime;

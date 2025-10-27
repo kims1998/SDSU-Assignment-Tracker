@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Service
 public class CalendarEventService {
-
     private final CalendarEventRepository calEvRepo;
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -59,25 +58,25 @@ public class CalendarEventService {
     }
 
     public List<CalendarEvent> getByDateRangeEpoch(Long calendarId, String dateStart, String dateStop){
-        LocalDate dateBegin;
-        LocalDate dateEnd;
+        LocalDate dateBegin,
+                  dateEnd;
         try{
             dateBegin = LocalDate.parse(dateStart, FORMATTER);
             dateEnd = LocalDate.parse(dateStop, FORMATTER);
         }
         catch (DateTimeParseException e){
-            throw new IllegalArgumentException("Invalid date format. Expect yyy-MM-dd");
+            throw new IllegalArgumentException("Invalid date format. Expect yyyy-MM-dd");
         }
         long begin_num = dateBegin.toEpochDay();
         long end_num = dateEnd.toEpochDay();
         return calEvRepo.findByCalendarIdAndEpochDateBetween(calendarId, begin_num, end_num);
     }
 
-
     public void deleteById(Long id){
         calEvRepo.deleteById(id);
     }
 
-    public Optional<CalendarEvent> findById (Long id){ return calEvRepo.findById(id);}
-
+    public Optional<CalendarEvent> findById (Long id){
+        return calEvRepo.findById(id);
+    }
 }

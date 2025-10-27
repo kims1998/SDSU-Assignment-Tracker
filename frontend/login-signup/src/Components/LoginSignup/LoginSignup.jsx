@@ -22,36 +22,36 @@ const LoginSignup = () => {
     <div className='container'>
         <div className='header'>
             <div className='text-sdsu'> <span role="img" aria-label="dog">📚</span>SDSU Assignments Tracker</div>
-            <div className='text'> {action} </div>
+            <div className='text'> { action } </div>
             <div className='underline'></div>
         </div>
 
         <div className='inputs'>
             {action==="Login"?<div></div>:<div className='input'>
-                <img src={user_icon} alt="" />
+                <img src={ user_icon } alt="" />
                 <input type="text" placeholder='Name'/>
             </div>}
             <div className='input'>
-                <img src={email_icon} alt="" />
+                <img src={ email_icon } alt="" />
                 <input type="email" placeholder='Email ID'/>
             </div>
             <div className='input'>
-                <img src={password_icon} alt="" />
+                <img src={ password_icon } alt="" />
                 <input type="password" placeholder='Password'/>
             </div>
             {action==="Sign Up"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click Here</span></div>
         }
         </div>
         <div className="submit-container">
-            <div className={action==="Login"?"submit gray": "submit"} onClick={()=>{setAction("Sign Up")}}>Sign Up</div>
-            <div className={action==="Sign Up"?"submit gray":"submit"} onClick={()=>{setAction("Login")}}>Login</div>
+            <div className={ action==="Login"?"submit gray": "submit" } onClick={() => {setAction("Sign Up")} }>Sign Up</div>
+            <div className={ action==="Sign Up"?"submit gray":"submit" } onClick={() => {setAction("Login")} }>Login</div>
         </div>
 
         {/*21OCT2025 ADDED BUTTON */}
                     {/* ADD THIS BUTTON */}
-            <div style={{marginTop: '20px', textAlign: 'center'}}>
+            <div style={ {marginTop: '20px', textAlign: 'center'} }>
                 <button 
-                    onClick={goToDashboard}
+                    onClick={ goToDashboard }
                     style={{
                         padding: '10px 20px',
                         backgroundColor: '#d41736',
@@ -68,9 +68,5 @@ const LoginSignup = () => {
         </div>
     );
 }
-
-
-
-
 
 export default LoginSignup

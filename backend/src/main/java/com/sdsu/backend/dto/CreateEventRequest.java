@@ -11,9 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateEventRequest {
     private Long calendarId;
-    private String eventType;
-    private String date;
-    private Double startTime;
-    private Double endTime;
-    private String title;
+    private String title,
+                   eventType,
+                   date;
+    private Double startTime,
+                   endTime;
 }
