@@ -23,10 +23,27 @@ public class UserService {
         // this.userSettingsRepository = userSettingsRepository;
     }
 
+    /*
     public User createUser(String email, String password, String name) {
         User user = new User(email, password, name);
         // UserSettings defaultSettings = new UserSettings(user, false, false);
         // user.setUserSettings(defaultSettings);
+
+        return userRepository.save(user);
+    }
+     */
+
+    // sue me
+    public User save(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException(("User cannot be null"));
+        }
+        if (user.getEmail() == null) {
+            throw new IllegalArgumentException(("User must have an Email"));
+        }
+        if (user.getUsername() == null || user.getPassword() == null) {
+            throw new IllegalArgumentException(("User must have both a Username and/or Password"));
+        }
 
         return userRepository.save(user);
     }
@@ -39,6 +56,14 @@ public class UserService {
     // Fetch User by ID
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
+    }
+
+    public Optional<User> getUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
+    public List<User> getUserByActiveStatus(boolean activeStatus) {
+        return userRepository.findUserByActiveStatus(activeStatus);
     }
 
     // Update User Information
@@ -58,4 +83,7 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    // Find User by ID
+    public Optional<User> findById (Long id) {return userRepository.findById(id);}
 }
