@@ -31,6 +31,7 @@ public class User {
         this.name = name;
     }
 
+    // getters
     public String getUsername() {
         return name;
     }
@@ -40,6 +41,9 @@ public class User {
         return email;
     }
     public boolean getActiveStatus() {return activeStatus;}
+    public Long getId() {return id;}
+
+    // setters
 
     public void setUsername(String name) {
         this.name = name;
