@@ -7,11 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 @RestController
 @RequestMapping("/api/calendars")
 public class CalendarController {
 
+    private static final Logger LOG = Logger.getLogger(CalendarController.class.getName());
     private final CalendarService calendarService;
 
     public CalendarController(CalendarService calendarService) {
@@ -29,7 +32,7 @@ public class CalendarController {
 
             return ResponseEntity.status(HttpStatus.CREATED).body(saved);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
         }
     }
@@ -51,9 +54,8 @@ public class CalendarController {
             return ResponseEntity.noContent().build();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
         }
     }
-
 } // END OF CalendarController
