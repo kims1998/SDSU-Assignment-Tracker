@@ -18,6 +18,14 @@ const LoginSignup = () => {
         navigate('/dashboard');
     };
 
+    const [state, setState] = useState ({
+        userData: {
+            email: '',
+            password: '',
+            name: '',
+        }
+    })
+
   return (
     <div className='container'>
         <div className='header'>

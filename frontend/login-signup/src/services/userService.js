@@ -131,17 +131,25 @@ export const updateUser = async (email, userData) => {
 }
 
 // ===== DELETE - Remove A User =====
+
 // Delete a User via Email
-/*
 export const deleteUser = async (email) => {
     try {
         const response = await fetch(`${API_BASE_URL}/users/email/${email}`, {
             method: 'DELETE'
-        })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete User')
+        }
+
+        return true;
+    } catch (error) {
+        console.error('Error deleting User', error);
+        throw error;
     }
 }
 
- */
 
 
 
