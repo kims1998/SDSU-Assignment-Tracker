@@ -12,6 +12,7 @@ public class User {
                    password,
                    name;
     private boolean activeStatus = false;
+    private boolean darkMode = false;
 
 
     // VVV ||CALENDAR 1-1 || VVV
@@ -21,6 +22,9 @@ public class User {
 
     // @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     // private UserSettings userSettings;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Calendar calendar;
 
     public User() {
     }
@@ -41,7 +45,9 @@ public class User {
         return email;
     }
     public boolean getActiveStatus() {return activeStatus;}
+    public boolean getDarkMode() {return darkMode;}
     public Long getId() {return id;}
+
 
     // setters
 
@@ -58,6 +64,16 @@ public class User {
     }
     public void setActiveStatusTrue() {this.activeStatus = true;}
     public void setActiveStatusFalse() {this.activeStatus = false;}
+    public void setDarkModeTrue() {this.darkMode =true;}
+    public void setDarkModeFalse() {this.darkMode = false;}
+
+    // maintain bidirectional synchronization
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+        if (calendar != null) {
+            calendar.setUser(this);
+        }
+    }
 
     // public void setUserSettings(UserSettings userSettings){
     // this.userSettings = userSettings;

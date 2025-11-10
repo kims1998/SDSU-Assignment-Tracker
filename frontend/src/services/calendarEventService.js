@@ -1,4 +1,4 @@
-// Base URL for your Spring Boot backend
+ // Base URL for your Spring Boot backend
 const API_BASE_URL = 'http://localhost:8080/api';
 
 // Always use calendar ID 1 for now (our default calendar)
