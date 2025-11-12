@@ -4,6 +4,7 @@ import com.sdsu.backend.model.User;
 // import com.sdsu.backend.model.UserSettings;
 import com.sdsu.backend.repository.UserRepository;
 // import com.sdsu.backend.repository.UserSettingsRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class UserService {
         // this.userSettingsRepository = userSettingsRepository;
     }
 
+    /*
     public User createUser(String email, String password, String name) {
         User user = new User(email, password, name);
         // UserSettings defaultSettings = new UserSettings(user, false, false);
@@ -30,7 +32,26 @@ public class UserService {
 
         return userRepository.save(user);
     }
+     */
 
+    // sue me
+    public User save(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException(("User cannot be null"));
+        }
+        if (user.getEmail() == null) {
+            throw new IllegalArgumentException(("User must have an Email"));
+        }
+        if (user.getUsername() == null || user.getPassword() == null) {
+            throw new IllegalArgumentException(("User must have both a Username and/or Password"));
+        }
+
+        return userRepository.save(user);
+    }
+
+    // Sorry Noah, I didn't see this before I implemented my own stuffs lmao
+
+    /*
     // Fetch All Users
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -40,6 +61,34 @@ public class UserService {
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
+
+     */
+
+    // Find User by ID
+    public Optional<User> findById (Long id) {return userRepository.findById(id);}
+
+    // Find User by Email
+    public Optional<User> getUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
+    // Find User by Password
+    public Optional<User> getUserByPassword(String password) {
+        return userRepository.findUserByPassword(password);
+    }
+
+    // Find User by Name
+    public Optional<User> getUserByName(String name) {
+        return userRepository.findUserByName(name);
+    }
+
+    // Find All Active Users
+    public List<User> getUserByActiveStatus(boolean activeStatus) {
+        return userRepository.findUserByActiveStatus(activeStatus);
+    }
+
+
+
 
     // Update User Information
     public User updateUser(Long id, String email, String password, String name) {
@@ -54,8 +103,22 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
+
     // Delete User
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    @Transactional
+    public void deleteUserByEmail(String email) {
+        if (email == null) {
+            throw new IllegalArgumentException("Email cannot be null to be delete");
+        }
+
+        userRepository.deleteByEmail(email);
+    }
+
+
+
 }

@@ -11,6 +11,8 @@ public class User {
     private String email,
                    password,
                    name;
+    private boolean activeStatus = false;
+
 
     // VVV ||CALENDAR 1-1 || VVV
 
@@ -29,13 +31,19 @@ public class User {
         this.name = name;
     }
 
+    // getters
     public String getUsername() {
         return name;
     }
+    public String getPassword() {return password;}
 
     public String getEmail() {
         return email;
     }
+    public boolean getActiveStatus() {return activeStatus;}
+    public Long getId() {return id;}
+
+    // setters
 
     public void setUsername(String name) {
         this.name = name;
@@ -48,6 +56,8 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setActiveStatusTrue() {this.activeStatus = true;}
+    public void setActiveStatusFalse() {this.activeStatus = false;}
 
     // public void setUserSettings(UserSettings userSettings){
     // this.userSettings = userSettings;
