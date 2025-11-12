@@ -68,6 +68,7 @@ export const getUserByEmail = async (email) => {
 }
 
 // Get User via Password
+
 export const getUserByPassword = async (password) => {
     try {
         const response = await fetch(
