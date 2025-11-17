@@ -62,6 +62,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setActiveStatus(boolean status) {this.activeStatus = status;}
     public void setActiveStatusTrue() {this.activeStatus = true;}
     public void setActiveStatusFalse() {this.activeStatus = false;}
     public void setDarkModeTrue() {this.darkMode =true;}
