@@ -59,7 +59,7 @@ const LoginSignup = () => {
   return (
     <div className='container'>
         <div className='header'>
-            <div className='text-sdsu'> <span role="img" aria-label="dog">📚</span>SDSU Assignments Tracker</div>
+            <div className='text-sdsu'> <span role="img" aria-label="dog">📚</span>SDSU Assignment Tracker</div>
             <div className='text'> { action } </div>
             <div className='underline'></div>
         </div>
