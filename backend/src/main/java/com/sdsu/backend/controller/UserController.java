@@ -1,6 +1,5 @@
 package com.sdsu.backend.controller;
 
-
 import com.sdsu.backend.dto.CreateUserRequest;
 import com.sdsu.backend.dto.UpdateEventRequest;
 import com.sdsu.backend.dto.UpdateUserRequest;
@@ -12,7 +11,8 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +20,7 @@ import java.util.Optional;
 @RequestMapping("api/users")
 public class UserController {
 
+    private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -55,7 +56,7 @@ public class UserController {
 
             return ResponseEntity.ok(users);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
         }
     }
@@ -114,7 +115,7 @@ public class UserController {
 
             User user = userOpt.get();
 
-            // This is all based on the calandarEventControler.java
+            // This is all based on the calandarEventController.java
 
             if (request.getEmail() != null) {
                 user.setEmail(request.getEmail());
@@ -130,7 +131,7 @@ public class UserController {
 
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
         }
     }
@@ -148,7 +149,7 @@ public class UserController {
 
             User user = userOpt.get();
 
-            // This is all based on the calandarEventControler.java
+            // This is all based on the calandarEventController.java
 
             if (request.getEmail() != null) {
                 user.setEmail(request.getEmail());
@@ -164,7 +165,7 @@ public class UserController {
 
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
         }
     }
@@ -177,7 +178,7 @@ public class UserController {
             userService.deleteUser(id);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
         }
     }
@@ -189,11 +190,8 @@ public class UserController {
             userService.deleteUserByEmail(email);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
         }
     }
-
-
-
 }
