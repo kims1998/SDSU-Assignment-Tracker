@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3421039-4a76-4add-8550-d46104bfb8f9" name="Changes" comment="" />
+    <list default="true" id="e3421039-4a76-4add-8550-d46104bfb8f9" name="Changes" comment=".idea test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +61,7 @@
     "npm.start.executor": "Run",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
     "vue.rearranger.settings.migration": "true"
   },
@@ -125,6 +127,7 @@
       <workItem from="1761606802627" duration="2788000" />
       <workItem from="1762331169070" duration="4612000" />
       <workItem from="1763405192410" duration="12455000" />
+      <workItem from="1763592358635" duration="147000" />
     </task>
     <task id="LOCAL-00001" summary="Added ConfirmDialog.jsx. Made changes to Dashboard.jsx and Dashboard.css to add the popup to the page when the user deletes an assignment.">
       <option name="closed" value="true" />
@@ -134,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763545482788</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=".idea test">
+      <option name="closed" value="true" />
+      <created>1763592347003</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763592347003</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +153,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added ConfirmDialog.jsx. Made changes to Dashboard.jsx and Dashboard.css to add the popup to the page when the user deletes an assignment." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ConfirmDialog.jsx. Made changes to Dashboard.jsx and Dashboard.css to add the popup to the page when the user deletes an assignment." />
+    <MESSAGE value=".idea test" />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea test" />
   </component>
 </project>
