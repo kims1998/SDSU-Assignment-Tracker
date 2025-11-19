@@ -7,6 +7,8 @@ import {
     deleteAssignment,
 } from '../../services/calendarEventService';
 
+import ConfirmDialog from "./ConfirmDialog";
+
 function Dashboard() {
     //setState is technically not used, but we use it to update parts of the state object (don't delete)
     const [state, setState] = useState ({
@@ -24,7 +26,13 @@ function Dashboard() {
             date: '',
             startTime: '9',
             endTime: '10',
-        }
+        },
+
+        // Added for confirmation popup
+        showDeleteConfirm: false,
+        deleteTarget: null,   // assignment to be deleted
+        deleteBusy: false,
+        deleteError: null,
     });
 
     const updateState = (updates) => 
@@ -129,16 +137,52 @@ function Dashboard() {
         });
     };
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this assignment?')) {
-            try {
-                await deleteAssignment(id);
-                fetchAssignments();
-            } catch (err) {
-                updateState ({ error: 'Failed to delete assignment!' });
-                console.error(err);
-            };
-        };
+    // const handleDelete = async (id) => {
+    //     if (window.confirm('Are you sure you want to delete this assignment?')) {
+    //         try {
+    //             await deleteAssignment(id);
+    //             fetchAssignments();
+    //         } catch (err) {
+    //             updateState ({ error: 'Failed to delete assignment!' });
+    //             console.error(err);
+    //         };
+    //     };
+    // };
+
+    // When user clicks the trash can button
+    const askDelete = (assignment) => {
+        updateState({
+            showDeleteConfirm: true,
+            deleteTarget: assignment,
+            deleteError: null,
+        });
+    };
+
+    const closeDeleteConfirm = () => {
+        updateState({
+            showDeleteConfirm: false,
+            deleteTarget: null,
+            deleteError: null,
+            deleteBusy: false,
+        });
+    };
+
+    // Called when user confirms dialog in confirmation popup
+    const handleDeleteConfirmed = async () => {
+        if (!state.deleteTarget) return;
+
+        updateState({ deleteBusy: true, deleteError: null });
+
+        try {
+            await deleteAssignment(state.deleteTarget.id);
+            await fetchAssignments();
+            closeDeleteConfirm();
+        } catch (err) {
+            updateState({ deleteError: 'Failed to delete assignment!' });
+            console.error(err);
+        } finally {
+            updateState({ deleteBusy: false });
+        }
     };
 
     const closeModal = () => {
@@ -388,9 +432,13 @@ function Dashboard() {
                             <button className="btn btn-small" onClick={() => handleEdit(assignment)}>
                                 ✏️ Edit
                             </button>
-                            <button className="btn btn-delete btn-small" onClick={() => handleDelete(assignment.id)}>
+                            <button
+                                className="btn btn-delete btn-small"
+                                onClick={() => askDelete(assignment)}
+                            >
                                 🗑️ Delete
                             </button>
+
                         </div>
                     </div>
                 ))}
@@ -489,6 +537,26 @@ function Dashboard() {
         </div>
     </div>
 )}
+            <ConfirmDialog
+                open={state.showDeleteConfirm}
+                title="Delete this assignment?"
+                message={
+                    state.deleteTarget
+                        ? `Are you sure you want to delete "${state.deleteTarget.title}"?`
+                        : "Are you sure you want to delete this assignment?"
+                }
+                confirmText={state.deleteBusy ? "Deleting…" : "Delete"}
+                cancelText="Cancel"
+                busy={state.deleteBusy}
+                error={state.deleteError}
+                onConfirm={handleDeleteConfirmed}
+                onClose={() => {
+                    if (!state.deleteBusy) {
+                        closeDeleteConfirm();
+                    }
+                }}
+            />
+
         </div>
     );
 }
