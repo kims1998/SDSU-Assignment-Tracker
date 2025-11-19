@@ -364,3 +364,70 @@
     margin-top: 4px;
     text-align: center;
 }
+
+/* Confirm popup */
+
+.cd-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500; /* above calendar + modals */
+}
+
+.cd-card {
+    background: white;
+    padding: 24px 28px;
+    border-radius: 10px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.cd-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cd-body {
+    margin: 0 0 16px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.cd-error {
+    margin: 0 0 12px;
+    color: #b91c1c;
+    font-size: 13px;
+}
+
+.cd-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Buttons used for confirm popup */
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}

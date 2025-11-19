@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e3421039-4a76-4add-8550-d46104bfb8f9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.mvn.wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/CalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/CalendarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/public/sdsu_red.ico" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sdsu_red.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Assets/email.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Assets/email.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Assets/password.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Assets/password.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Assets/person.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Assets/person.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Dashboard/ConfirmDialog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/ConfirmDialog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Dashboard/Dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/LoginSignup/LoginSignup.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/LoginSignup/LoginSignup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/reportWebVitals.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/services/calendarEventService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/calendarEventService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/userService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/setupTests.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="nicoBackup" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenRunner">
+    <option name="environmentProperties">
+      <map>
+        <entry key="JAVA_HOME" value="/opt/homebrew/opt/openjdk@17" />
+      </map>
+    </option>
+    <option name="jreName" value="homebrew-17" />
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="34fLVNZEeXyiNhjaNMBApUBWWwM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BackendApplication.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.BackendApplication.executor": "Run",
+    "git-widget-placeholder": "Merging Rachel",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="MYSQLUSERNAME" value="tracker_user" />
+        <env name="MYSQLPASSWORD" value="TrackerPass123!" />
+      </envs>
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sdsu.backend.BackendApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e3421039-4a76-4add-8550-d46104bfb8f9" name="Changes" comment="" />
+      <created>1761599703278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761599703278</updated>
+      <workItem from="1761599704542" duration="92000" />
+      <workItem from="1761599926665" duration="2064000" />
+      <workItem from="1761602121278" duration="170000" />
+      <workItem from="1761602301629" duration="369000" />
+      <workItem from="1761602681104" duration="418000" />
+      <workItem from="1761603105762" duration="470000" />
+      <workItem from="1761603579849" duration="291000" />
+      <workItem from="1761603882767" duration="653000" />
+      <workItem from="1761604538457" duration="43000" />
+      <workItem from="1761604583344" duration="2213000" />
+      <workItem from="1761606802627" duration="2788000" />
+      <workItem from="1762331169070" duration="4612000" />
+      <workItem from="1763405192410" duration="12455000" />
+      <workItem from="1763592358635" duration="147000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added ConfirmDialog.jsx. Made changes to Dashboard.jsx and Dashboard.css to add the popup to the page when the user deletes an assignment.">
+      <option name="closed" value="true" />
+      <created>1763545482788</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1763545482788</updated>
+    </task>
+    <task id="LOCAL-00002" summary=".idea test">
+      <option name="closed" value="true" />
+      <created>1763592347003</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763592347003</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added ConfirmDialog.jsx. Made changes to Dashboard.jsx and Dashboard.css to add the popup to the page when the user deletes an assignment." />
+    <MESSAGE value=".idea test" />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea test" />
+  </component>
+</project>
