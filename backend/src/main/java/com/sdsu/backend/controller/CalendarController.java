@@ -1,5 +1,4 @@
 package com.sdsu.backend.controller;
-
 import com.sdsu.backend.model.Calendar;
 import com.sdsu.backend.service.CalendarService;
 import com.sdsu.backend.dto.CreateCalendarRequest;
