@@ -72,6 +72,13 @@ public class CalendarEventController {
         event.setStartTime(request.getStartTime());
         event.setEndTime(request.getEndTime());
         event.setTitle(request.getTitle());
+        event.setEventType(request.getEventType());
+        switch (eventType.toUpperCase()) {
+            case "SCHOOL_CLASS" -> event.setPriority(3);
+            case "SPECIAL_EVENT" -> event.setPriority(1);
+            case "ASSIGNMENT" -> event.setPriority(2);
+            default -> event.setPriority(99); // unknown/default
+        }
         event.setCalendar(calendar);
         return event;
     }
@@ -114,9 +121,11 @@ public class CalendarEventController {
 
             CalendarEvent event = eventOpt.get();
 
-            // If eventType changed, we need to create a new object of the new type
-            // For now, we'll just update the existing event's fields
-            // (Changing type requires deleting old and creating new, which is complex)
+            /*
+             If eventType changed, we need to create a new object of the new type
+             For now, we'll just update the existing event's fields
+             (Changing type requires deleting old and creating new, which is complex)
+             */
 
             // Update fields if provided
             if (request.getDate() != null) {
@@ -131,9 +140,11 @@ public class CalendarEventController {
             if (request.getTitle() != null) {
                 event.setTitle(request.getTitle());
             }
+            if (request.getEventType() != null) {
+                event.setEventType(request.getEventType());
+            }
 
             CalendarEvent updated = calendarEventService.save(event);
-
             return ResponseEntity.ok(updated);
 
         } catch (Exception e) {

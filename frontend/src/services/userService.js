@@ -2,7 +2,6 @@
 const API_BASE_URL = 'http://localhost:8080/api';
 
 // ===== CREATE A NEW USER =====
-
 export const createUser = async (userData) => {
     try {
         const response = await fetch(`${API_BASE_URL}/users`, {
@@ -49,7 +48,6 @@ export const getAllActiveUsers = async () => {
 }
 
 // Get User via Email
-
 export const getUserByEmail = async (email) => {
     try {
         const response = await fetch(

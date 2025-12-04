@@ -64,6 +64,7 @@ export const updateAssignment = async (id, assignmentData) => {
                 date: assignmentData.date,
                 startTime: assignmentData.startTime,
                 endTime: assignmentData.endTime,
+                eventType: assignmentData.eventType || 'ASSIGNMENT'
             }),
         });
 
