@@ -14,6 +14,11 @@ public class Calendar {
     //@OneToOne
     //@JoinColumn(name = "user_id")
     // private User user;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
     @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<CalendarEvent> calendarEvents = new HashSet<>();
     private boolean isShareable;
@@ -27,6 +32,11 @@ public class Calendar {
     // Id is covered by @Id
     //}
 
+    public Calendar (User user) {
+        this.user = user;
+        this.isShareable = false;
+    }
+
     public Long getId() {
         return id;
     }
@@ -37,6 +47,14 @@ public class Calendar {
 
     public boolean getIsSharable (){
         return isShareable;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setIsSharable(boolean share){

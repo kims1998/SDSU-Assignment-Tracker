@@ -127,6 +127,10 @@ public class UserController {
                 user.setUsername(request.getName());
             }
 
+            if (request.isActiveStatus()) {
+                user.setActiveStatus(request.isActiveStatus());
+            }
+
             User updatedUser = userService.save(user);
 
             return ResponseEntity.ok(updatedUser);
@@ -159,6 +163,9 @@ public class UserController {
             }
             if (request.getName() != null) {
                 user.setUsername(request.getName());
+            }
+            if (request.isActiveStatus()) {
+                user.setActiveStatus(request.isActiveStatus());
             }
 
             User updatedUser = userService.save(user);
