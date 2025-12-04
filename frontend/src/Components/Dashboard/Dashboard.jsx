@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Dashboard.css';
 import {
     createAssignment,
     getAllAssignments,
     updateAssignment,
-    deleteAssignment,
+    deleteAssignment
 } from '../../services/calendarEventService';
 
 function Dashboard() {
     //setState is technically not used, but we use it to update parts of the state object (don't delete)
-    const [state, setState] = useState ({
+    const [state, setState] = useState({
         assignments: [],
         filteredAssignments: [],
-        currentFilter:'ALL',
+        currentFilter: 'ALL',
         loading: false,
         error: null,
         showModal: false,
@@ -27,58 +27,60 @@ function Dashboard() {
         }
     });
 
-    const updateState = (updates) => 
+    const updateState = (updates) =>
         setState(prev => ({
             ...prev,
             ...updates
         })
     );
 
-    // Fetch assignments on load
-    useEffect(() => {
-        fetchAssignments();
-    }, []);
-
-    // Update filtered assignments when filter or assignments change
-    useEffect(() => {
-        filterAssignments();
-    }, [state.currentFilter, state.assignments]);
-
-    const fetchAssignments = async () => {
+    const fetchAssignments = useCallback(async () => {
         updateState ({
             loading: true,
             error: null
         });
         try {
             const data = await getAllAssignments();
-            updateState ({ assignments: data });
+            const assignmentsWithEpoch = data.map(a => ({
+                ...a,
+                eventType: a.eventType,
+                epochDate: Math.floor(new Date(a.date).getTime() / 86400000)
+            }))
+            updateState ({ assignments: assignmentsWithEpoch });
         } catch (err) {
             updateState ({ error: 'Failed to load assignments. Make sure backend is running!' });
             console.error(err);
         } finally {
             updateState ({ loading: false });
         }
-    };
+    }, []);
 
-    const filterAssignments = () => {
+    // Fetch assignments on load
+    useEffect(() => {
+        fetchAssignments().catch(err =>
+            console.error(err));
+    }, [fetchAssignments]);
+
+    const filterAssignments = useCallback(() => {
         if (state.currentFilter === 'ALL') {
-            updateState ({ filteredAssignments: state.assignments });
-        } else {
-            // Filter by priority: prio 1 = Special Event, 2 = Assignment, 3 = Class
-            let priorityFilter;
-            if (state.currentFilter === 'SPECIAL_EVENT') priorityFilter = 1;
-            if (state.currentFilter === 'ASSIGNMENT') priorityFilter = 2;
-            if (state.currentFilter === 'SCHOOL_CLASS') priorityFilter = 3;
-            
-            updateState ({ filteredAssignments: state.assignments.filter(a =>
-                a.priority === priorityFilter
-            )});
-        };
-    };
+            updateState({ filteredAssignments: state.assignments });
+            return;
+        }
+
+        updateState({
+            filteredAssignments: state.assignments.filter(a =>
+                a.eventType === state.currentFilter)
+        });
+    }, [state.currentFilter, state.assignments]);
+
+    // Update filtered assignments when filter or assignments change
+    useEffect(() => {
+        filterAssignments();
+    }, [filterAssignments]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        updateState ({ 
+        updateState ({
             formData: {
                 ...state.formData,
                 [name]: value
@@ -93,37 +95,44 @@ function Dashboard() {
         if (!state.formData.title || !state.formData.date) {
             updateState ({ error: 'Title and date are required!' });
             return;
-        };
+        }
 
         try {
+            const priorityMap = {
+                SPECIAL_EVENT: 1,
+                ASSIGNMENT: 2,
+                SCHOOL_CLASS: 3
+            };
+
             const data = {
                 ...state.formData,
                 startTime: parseFloat(state.formData.startTime),
                 endTime: parseFloat(state.formData.endTime),
+                priority: priorityMap[state.formData.priority]
             };
 
             if (state.editingId) {
                 await updateAssignment(state.editingId, data);
             } else {
                 await createAssignment(data);
-            };
-
+            }
             closeModal();
-            fetchAssignments();
+            await fetchAssignments();
         } catch (err) {
             updateState ({ error: 'Failed to save assignment!' });
             console.error(err);
-        };
+        }
     };
 
     const handleEdit = (assignment) => {
         updateState ({
-            formData: ({
+            formData: {
+                eventType: assignment.eventType,
                 title: assignment.title,
                 date: assignment.date,
                 startTime: assignment.startTime.toString(),
-                endTime: assignment.endTime.toString(),
-            }),
+                endTime: assignment.endTime.toString()
+            },
             editingId: assignment.id,
             showModal: true
         });
@@ -133,12 +142,12 @@ function Dashboard() {
         if (window.confirm('Are you sure you want to delete this assignment?')) {
             try {
                 await deleteAssignment(id);
-                fetchAssignments();
+                await fetchAssignments();
             } catch (err) {
                 updateState ({ error: 'Failed to delete assignment!' });
                 console.error(err);
-            };
-        };
+            }
+        }
     };
 
     const closeModal = () => {
@@ -158,13 +167,13 @@ function Dashboard() {
     const showCreateModal = () => {
         updateState ({
             editingId: null,
-            formData: ({
+            formData: {
                 eventType: 'ASSIGNMENT',
                 title: '',
                 date: '',
                 startTime: '9',
                 endTime: '10'
-            }),
+            },
             showModal: true
         });
     };
@@ -173,37 +182,34 @@ function Dashboard() {
         return `${ hour.toString().padStart(2, '0') }:00`;
     };
 
-    const getTypeLabel = (priority) => {
+    const getTypeLabel = (eventType) => {
         const labels = {
-            1: '⭐ Special Event',
-            2: '📚 Assignment',
-            3: '🎓 Class'
+            "SPECIAL_EVENT": '⭐ Special Event',
+            "ASSIGNMENT": '📚 Assignment',
+            "SCHOOL_CLASS": '🎓 Class'
         };
-        return labels[priority] || 'Unknown';
+        return labels[eventType] || 'Unknown';
     };
 
-    const getTypeClass = (priority) => {
+    const getTypeClass = (eventType) => {
         const classes = {
-            1: 'special-event',
-            2: 'assignment',
-            3: 'school-class'
+            "SPECIAL_EVENT": 'special-event',
+            "ASSIGNMENT": 'assignment',
+            "SCHOOL_CLASS": 'school-class'
         };
-        return classes[priority] || '';
-    };
-
-    const getPriorityLabel = (priority) => {
-        const labels = { 1: 'High', 2: 'Medium', 3: 'Normal' };
-        return labels[priority] || priority;
+        return classes[eventType] || '';
     };
 
     // Calendar functions
     const renderCalendar = () => {
         const year = state.currentCalendarDate.getFullYear();
         const month = state.currentCalendarDate.getMonth();
-        
-        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-                           'July', 'August', 'September', 'October', 'November', 'December'];
-        
+
+        const monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const daysInMonth = lastDay.getDate();
@@ -211,11 +217,15 @@ function Dashboard() {
         const prevMonthLastDay = new Date(year, month, 0).getDate();
 
         const days = [];
-        const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
         // Day headers
+        const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         dayHeaders.forEach(day => {
-            days.push(<div key={ `header-${day}` } className="calendar-day-header">{ day }</div>);
+            days.push(
+                <div key={ `header-${day}` } className="calendar-day-header">
+                    { day }
+                </div>
+            );
         });
 
         // Previous month's days
@@ -226,29 +236,30 @@ function Dashboard() {
                     <div className="calendar-day-number">{ dayNum }</div>
                 </div>
             );
-        };
+        }
 
         // Current month's days
         const today = new Date();
         for (let day = 1; day <= daysInMonth; day++) {
-            const isToday = day === today.getDate() && 
-                           month === today.getMonth() && 
-                           year === today.getFullYear();
-            
-            const date = new Date(year, month, day);
-            const epochDate = Math.floor(date.getTime() / 86400000);
+            const currentDate = new Date(year, month, day);
+            const isToday =
+                day === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear();
+
+            const epochDate = Math.floor(currentDate.getTime() / 86400000);
             const dayEvents = state.assignments.filter(a => a.epochDate === epochDate);
 
             days.push(
-                <div 
-                    key={ `current-${ day }` } 
+                <div
+                    key={ `current-${ day }` }
                     className={ `calendar-day ${ isToday ? 'today' : '' }` }
                 >
                     <div className="calendar-day-number">{ day }</div>
                     {dayEvents.slice(0, 3).map(event => (
-                        <div 
+                        <div
                             key={ event.id }
-                            className={ `calendar-event-dot ${ getTypeClass(event.priority) }` }
+                            className={ `calendar-event-dot ${ getTypeClass(event.eventType) }` }
                             title={ `${ event.title }(${ formatTime(event.startTime) } - ${ formatTime(event.endTime) })` }
                             onClick={(e) => {
                                 e.stopPropagation();
@@ -263,7 +274,7 @@ function Dashboard() {
                     )}
                 </div>
             );
-        };
+        }
 
         // Next month's days
         const totalCells = days.length - 7;
@@ -274,7 +285,7 @@ function Dashboard() {
                     <div className="calendar-day-number">{ day }</div>
                 </div>
             );
-        };
+        }
         return {
             title: `📅 ${monthNames[month]} ${year}`,
             days
@@ -283,13 +294,13 @@ function Dashboard() {
 
     const previousMonth = () => {
         updateState ({
-            currentCalendarDate: new Date(state.currentCalendarDate.setMonth(state.currentCalendarDate.getMonth() - 1))
+            currentCalendarDate: new Date(state.currentCalendarDate.setMonth(state.currentCalendarDate.getMonth() - 1, 1))
         });
     };
 
     const nextMonth = () => {
         updateState ({
-            currentCalendarDate: new Date(state.currentCalendarDate.setMonth(state.currentCalendarDate.getMonth() + 1))
+            currentCalendarDate: new Date(state.currentCalendarDate.setMonth(state.currentCalendarDate.getMonth() + 1, 1))
         });
     };
 
@@ -313,10 +324,10 @@ function Dashboard() {
             <div className="controls">
                 <button className="btn" onClick={ showCreateModal }>➕ Add New Event</button>
                 <button className="btn" onClick={ fetchAssignments }>🔄 Refresh</button>
-                
+
                 <div className="filter-buttons">
                     <strong>Filter by type:</strong>
-                    <button 
+                    <button
                         className={ `filter-btn ${ state.currentFilter === 'ALL' ? 'active' : '' }` }
                         onClick={() => updateState ({
                             currentFilter: 'ALL'
@@ -324,7 +335,7 @@ function Dashboard() {
                     >
                         All
                     </button>
-                    <button 
+                    <button
                         className={ `filter-btn ${ state.currentFilter === 'ASSIGNMENT' ? 'active' : '' }` }
                         onClick={() => updateState ({
                             currentFilter: 'ASSIGNMENT'
@@ -332,7 +343,7 @@ function Dashboard() {
                     >
                         📚 Assignments
                     </button>
-                    <button 
+                    <button
                         className={ `filter-btn ${ state.currentFilter === 'SCHOOL_CLASS' ? 'active' : '' }` }
                         onClick={() => updateState ({
                             currentFilter: 'SCHOOL_CLASS'
@@ -340,7 +351,7 @@ function Dashboard() {
                     >
                         🎓 Classes
                     </button>
-                    <button 
+                    <button
                         className={ `filter-btn ${ state.currentFilter === 'SPECIAL_EVENT' ? 'active' : '' }` }
                         onClick={() => updateState ({
                             currentFilter: 'SPECIAL_EVENT'
@@ -367,17 +378,14 @@ function Dashboard() {
                 )}
 
                 {!state.loading && state.filteredAssignments.map(assignment => (
-                    <div key={ assignment.id } className={ `event-card ${getTypeClass(assignment.priority)}` }>
+                    <div key={ assignment.id } className={ `event-card ${getTypeClass(assignment.eventType)}` }>
                         <div className="event-header">
                             <div>
                                 <div className="event-title">
                                     { assignment.title }
-                                    <span className={ `priority-badge priority-${assignment.priority}` }>
-                                        Priority: { getPriorityLabel(assignment.priority) }
-                                    </span>
                                 </div>
-                                <span className={ `event-type type-${getTypeClass(assignment.priority)}` }>
-                                    { getTypeLabel(assignment.priority) }
+                                <span className={ `event-type type-${getTypeClass(assignment.eventType)}` }>
+                                    { getTypeLabel(assignment.eventType) }
                                 </span>
                             </div>
                         </div>

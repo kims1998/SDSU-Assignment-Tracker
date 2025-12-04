@@ -34,7 +34,6 @@ public class UserService {
     }
      */
 
-    // sue me
     public User save(User user) {
         if (user == null) {
             throw new IllegalArgumentException(("User cannot be null"));
@@ -48,8 +47,6 @@ public class UserService {
 
         return userRepository.save(user);
     }
-
-    // Sorry Noah, I didn't see this before I implemented my own stuffs lmao
 
     /*
     // Fetch All Users
@@ -65,7 +62,7 @@ public class UserService {
      */
 
     // Find User by ID
-    public Optional<User> findById (Long id) {return userRepository.findById(id);}
+    public Optional<User> findById (Long id) { return userRepository.findById(id); }
 
     // Find User by Email
     public Optional<User> getUserByEmail(String email) {
@@ -88,8 +85,6 @@ public class UserService {
     }
 
 
-
-
     // Update User Information
     public User updateUser(Long id, String email, String password, String name) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
@@ -103,8 +98,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-
-
     // Delete User
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
@@ -115,10 +108,6 @@ public class UserService {
         if (email == null) {
             throw new IllegalArgumentException("Email cannot be null to be delete");
         }
-
         userRepository.deleteByEmail(email);
     }
-
-
-
 }

@@ -8,9 +8,10 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateEventRequest {
-    private String title,
-                   eventType,
-                   date;
-    private Double startTime,
-                   endTime;
+    private String title;
+    private String eventType;
+    private String date;
+    private Double startTime;
+    private Double endTime;
+    private Double priority;
 }
