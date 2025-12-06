@@ -20,6 +20,8 @@ public class LoginRequest {
         return password;
     }
 
+
+
     // Setters
     public void setEmail() {
         this.email = email;

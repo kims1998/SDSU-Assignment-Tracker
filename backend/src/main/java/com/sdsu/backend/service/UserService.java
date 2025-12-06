@@ -6,6 +6,7 @@ import com.sdsu.backend.repository.UserRepository;
 // import com.sdsu.backend.repository.UserSettingsRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,25 +15,27 @@ import java.util.*;
 public class UserService {
 
     private final UserRepository userRepository;
-    // private final UserSettingsRepository userSettingsRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    // UserSettingsRepository userSettingsRepository (REMOVED THIS PARAMETER FROM
-    // USERSERVICE PUT BACK AFTER)
-    @Autowired
-    public UserService(UserRepository userRepository) {
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        // this.userSettingsRepository = userSettingsRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    /*
+
     public User createUser(String email, String password, String name) {
         User user = new User(email, password, name);
-        // UserSettings defaultSettings = new UserSettings(user, false, false);
-        // user.setUserSettings(defaultSettings);
+
+        String hashedPassword = passwordEncoder.encode(password);
+
+        user.setEmail(email);
+        user.setPassword(hashedPassword);
+        user.setUsername(name);
 
         return userRepository.save(user);
     }
-     */
+
 
     public User save(User user) {
         if (user == null) {
@@ -48,18 +51,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    /*
-    // Fetch All Users
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
 
-    // Fetch User by ID
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
-    }
-
-     */
 
     // Find User by ID
     public Optional<User> findById (Long id) { return userRepository.findById(id); }
@@ -90,8 +82,10 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         if (email != null)
             user.setEmail(email);
-        if (password != null)
+        if (password != null) {
+            String hashedPassword = passwordEncoder.encode(password);
             user.setPassword(password);
+        }
         if (name != null)
             user.setUsername(name);
 
