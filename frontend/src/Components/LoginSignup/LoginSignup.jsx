@@ -6,6 +6,8 @@ import email_icon from '../Assets/email.png'
 import password_icon from '../Assets/password.png'
 import { useNavigate } from 'react-router-dom';
 
+import { loginChecks } from '../../services/loginService';
+
 const LoginSignup = () => {
 
     const [action, setAction] = useState("Sign Up");
@@ -20,6 +22,29 @@ const LoginSignup = () => {
     const goToDashboard = () => {
         navigate('/dashboard');
     };
+
+    const handleLogin = async () => {
+
+        console.log("Attempting login for:", email);
+
+        try {
+            const loginData = await loginChecks(email, password);
+
+            console.log("Login Successful! Received Data:", loginData);
+
+            localStorage.setItem('userToken', loginData.token);
+            localStorage.setItem('userId', loginData.id);
+            localStorage.setItem('userEmail', loginData.email);
+
+            alert("Login successful!");
+
+            goToDashboard();
+
+        } catch (error) {
+            console.error("Login attempt failed:", error.message);
+            alert(error.message);
+        }
+    }
 
     // Handle Sign Up
     const handleSignup = async () => {
@@ -55,6 +80,14 @@ const LoginSignup = () => {
             alert("Network error: " + error.message);
         }
     };
+
+    const handleSubmit = () => {
+        if (action === "Sign Up") {
+            handleSignup();
+        } else {
+            handleLogin();
+        }
+    }
 
   return (
     <div className='container'>
@@ -97,14 +130,15 @@ const LoginSignup = () => {
 
         <div className="submit-container">
             <div 
-                className={ action==="Login"?"submit gray": "submit" } 
-                onClick={handleSignup}  // Sign Up sends data
+                className={ action==="Login"?"submit gray": "submit" }
+                onClick={ action === "Sign Up" ? () => handleSubmit() : () => setAction("Sign Up") }  // Sign Up sends data
             >
                 Sign Up
             </div>
+            {/* Login Button: Call handleSubmit if active, or switches view if inactive */}
             <div 
                 className={ action==="Sign Up"?"submit gray":"submit" } 
-                onClick={() => {setAction("Login")}}  // Switch to login view
+                onClick={ action === "Login" ? () => handleSubmit() : () => setAction("Login") }  // Switch to login view
             >
                 Login
             </div>

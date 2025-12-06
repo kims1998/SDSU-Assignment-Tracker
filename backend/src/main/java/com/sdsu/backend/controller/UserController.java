@@ -33,6 +33,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody CreateUserRequest request) {
         try {
 
+            /*
             User user = new User();
 
             user.setEmail(request.getEmail());
@@ -40,7 +41,15 @@ public class UserController {
             user.setUsername(request.getName());
             user.setActiveStatusTrue();
 
-            User saved = userService.save(user);
+             */
+
+
+
+            User saved = userService.createUser(
+                    request.getEmail(),
+                    request.getPassword(),
+                    request.getName()
+            );
 
             return ResponseEntity.status(HttpStatus.CREATED).body(saved);
         } catch (Exception e) {
@@ -117,23 +126,27 @@ public class UserController {
 
             // This is all based on the calandarEventController.java
 
-            if (request.getEmail() != null) {
-                user.setEmail(request.getEmail());
-            }
-            if (request.getPassword() != null) {
-                user.setPassword(request.getPassword());
-            }
-            if (request.getName() != null) {
-                user.setUsername(request.getName());
-            }
 
             if (request.isActiveStatus()) {
                 user.setActiveStatus(request.isActiveStatus());
             }
 
-            User updatedUser = userService.save(user);
+            User updatedUser = userService.updateUser(
+                    id,
+                    request.getEmail(),
+                    request.getPassword(),
+                    request.getName()
+            );
 
             return ResponseEntity.ok(updatedUser);
+
+        } catch (RuntimeException e) {
+            // Specifically catch the "User not found" exception from the service
+            if (e.getMessage().contains("User not found")) {
+                return ResponseEntity.notFound().build();
+            }
+            LOG.log(Level.WARNING, e.getMessage(), e);
+            return ResponseEntity.badRequest().build();
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
@@ -152,25 +165,22 @@ public class UserController {
             }
 
             User user = userOpt.get();
+            Long id = user.getId();
 
             // This is all based on the calandarEventController.java
+            User updatedUser = userService.updateUser(
+                    id,
+                    request.getEmail(),
+                    request.getPassword(),
+                    request.getName()
+            );
 
-            if (request.getEmail() != null) {
-                user.setEmail(request.getEmail());
-            }
-            if (request.getPassword() != null) {
-                user.setPassword(request.getPassword());
-            }
-            if (request.getName() != null) {
-                user.setUsername(request.getName());
-            }
             if (request.isActiveStatus()) {
                 user.setActiveStatus(request.isActiveStatus());
             }
 
-            User updatedUser = userService.save(user);
-
             return ResponseEntity.ok(updatedUser);
+
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();

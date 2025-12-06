@@ -35,9 +35,24 @@ export const createAssignment = async (assignmentData) => {
 
 // ===== READ - Get all assignments =====
 export const getAllAssignments = async () => {
+    const token = localStorage.getItem('userToken');
+
+    if (!token) {
+        // Handle case where user is not logged in (e.g., redirect to login)
+        console.warn("No authentication token found. Cannot load assignments.");
+        // Depending on your frontend flow, you might throw an error or return an empty array
+        return [];
+    }
+
     try {
         const response = await fetch(
-            `${API_BASE_URL}/calendar-events?calendarId=${CALENDAR_ID}`
+            `${API_BASE_URL}/calendar-events?calendarId=${CALENDAR_ID}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            }
         );
 
         if (!response.ok) {
