@@ -66,7 +66,7 @@ public class UserService {
 
     // Find User by Email
     public Optional<User> getUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+        return userRepository.findByEmail(email);
     }
 
     // Find User by Password
