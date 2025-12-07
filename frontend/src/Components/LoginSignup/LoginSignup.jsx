@@ -4,6 +4,7 @@ import './LoginSignup.css'
 import user_icon from '../Assets/person.png'
 import email_icon from '../Assets/email.png'
 import password_icon from '../Assets/password.png'
+import sdsu_logo from '../Assets/sdsu_primary_logo_rgb_horizontal_full_color.png'
 import { useNavigate } from 'react-router-dom';
 
 import { loginChecks } from '../../services/loginService';
@@ -91,10 +92,13 @@ const LoginSignup = () => {
 
   return (
     <div className='container'>
+        <img src={sdsu_logo} alt="SDSU Logo" className="sdsu-logo" />
         <div className='header'>
             <div className='text-sdsu'> <span role="img" aria-label="dog">📚</span>SDSU Assignment Tracker</div>
-            <div className='text'> { action } </div>
-            <div className='underline'></div>
+            <div className='text'> { action }
+                <div className='underline'></div>
+            </div>
+
         </div>
 
         <div className='inputs'>
