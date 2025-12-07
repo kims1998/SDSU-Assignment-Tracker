@@ -4,6 +4,12 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+
+    background-image: linear-gradient(rgba(252, 155, 155, 0.71), rgba(101, 14, 14, 0.53))
+            , url("../Assets/hepner_hall_sdsu_01192023_main.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .container{
