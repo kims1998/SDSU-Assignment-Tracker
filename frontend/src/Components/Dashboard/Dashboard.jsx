@@ -108,7 +108,7 @@ function Dashboard() {
                 ...state.formData,
                 startTime: parseFloat(state.formData.startTime),
                 endTime: parseFloat(state.formData.endTime),
-                priority: priorityMap[state.formData.priority]
+                priority: priorityMap[state.formData.eventType]
             };
 
             if (state.editingId) {
