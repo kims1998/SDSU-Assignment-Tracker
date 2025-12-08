@@ -2,7 +2,6 @@
 const API_BASE_URL = 'http://localhost:8080/api';
 
 // ===== CREATE A NEW USER =====
-
 export const createUser = async (userData) => {
     try {
         const response = await fetch(`${API_BASE_URL}/users`, {
@@ -49,7 +48,6 @@ export const getAllActiveUsers = async () => {
 }
 
 // Get User via Email
-
 export const getUserByEmail = async (email) => {
     try {
         const response = await fetch(
@@ -130,17 +128,25 @@ export const updateUser = async (email, userData) => {
 }
 
 // ===== DELETE - Remove A User =====
+
 // Delete a User via Email
-/*
 export const deleteUser = async (email) => {
     try {
         const response = await fetch(`${API_BASE_URL}/users/email/${email}`, {
             method: 'DELETE'
-        })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete User')
+        }
+
+        return true;
+    } catch (error) {
+        console.error('Error deleting User', error);
+        throw error;
     }
 }
 
- */
 
 
 
