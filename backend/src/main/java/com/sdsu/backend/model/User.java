@@ -1,21 +1,25 @@
 package com.sdsu.backend.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+
+import java.util.Objects;
 
 @Entity
+@Table(name = "user")
 public class User {
-    @Getter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Getter @Setter
+
+    // Constraints for data integrity
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Getter @Setter
-    private String password;
+    @Column(nullable = false)
+    private String password; // Hashed Password
 
+    @Column(nullable = false)
     private String name;
     private boolean activeStatus = false;
     private boolean darkMode = false;
@@ -33,7 +37,6 @@ public class User {
     private Calendar calendar;
 
     public User() {
-        //Default constructor required by JPA
     }
 
     public User(String email, String password, String name) {
@@ -46,12 +49,28 @@ public class User {
     public String getUsername() {
         return name;
     }
+    public String getPassword() {return password;}
+
+    public String getEmail() {
+        return email;
+    }
     public boolean getActiveStatus() {return activeStatus;}
     public boolean getDarkMode() {return darkMode;}
+    public Long getId() {return id;}
+
 
     // setters
+
     public void setUsername(String name) {
         this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     public void setActiveStatus(boolean status) {this.activeStatus = status;}
     public void setActiveStatusTrue() {this.activeStatus = true;}
@@ -67,10 +86,31 @@ public class User {
         }
     }
 
-    // public void setUserSettings(UserSettings userSettings){
-    // this.userSettings = userSettings;
-    // if (userSettings != null){
-    // userSettings.setUser(this);
-    // }
-    // }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        // Use getClass() to check against Hibernate proxies
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        // Check equality based on ID (or a business key if ID is transient)
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        // Use ID for hashCode, ensuring consistency with equals
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", activeStatus=" + activeStatus +
+                ", darkMode=" + darkMode +
+                '}';
+    }
+
 }
