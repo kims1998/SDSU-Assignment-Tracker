@@ -13,7 +13,7 @@ public class CreateEventRequest {
     private Long calendarId;
     private String title,
                    eventType,
-                   date;
-    private Double startTime,
+                   date,
+                   startTime,
                    endTime;
 }

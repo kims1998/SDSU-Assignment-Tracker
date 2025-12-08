@@ -38,7 +38,7 @@ public class CalendarEventService {
     }
 
     public List<CalendarEvent> getByEpochDate(Long calendarId, long epochDate){
-        return calEvRepo.findByCalendarIdAndEpochDate(calendarId, epochDate);
+        return calEvRepo.findEventsOnDay(calendarId, epochDate);
     }
 
     public List<CalendarEvent> getByStringDate(Long calendarId, String dateStr){
@@ -50,11 +50,11 @@ public class CalendarEventService {
             throw new IllegalArgumentException("Invalid date format. Expect yyyy-MM-dd");
         }
         long longDate = date.toEpochDay();                                      //you can use .toEpochDay() elsewhere to find start for inputs btw
-        return calEvRepo.findByCalendarIdAndEpochDate(calendarId, longDate);    //converts to long, then passes through epochdate
+        return calEvRepo.findEventsOnDay(calendarId, longDate);    //converts to long, then passes through epochdate
     }
 
     public List<CalendarEvent> getByDateRangeEpoch(Long calendarId, long dateStart, long dateEnd){ //use epochdate to epochdate+6 for a week
-        return calEvRepo.findByCalendarIdAndEpochDateBetween(calendarId, dateStart, dateEnd);
+        return calEvRepo.findEventsInRange(calendarId, dateStart, dateEnd);
     }
 
     public List<CalendarEvent> getByDateRangeEpoch(Long calendarId, String dateStart, String dateStop){
@@ -69,7 +69,7 @@ public class CalendarEventService {
         }
         long begin_num = dateBegin.toEpochDay();
         long end_num = dateEnd.toEpochDay();
-        return calEvRepo.findByCalendarIdAndEpochDateBetween(calendarId, begin_num, end_num);
+        return calEvRepo.findEventsInRange(calendarId, begin_num, end_num);
     }
 
     public void deleteById(Long id){

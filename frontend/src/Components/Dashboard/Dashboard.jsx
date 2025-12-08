@@ -8,7 +8,7 @@ import {
 } from '../../services/calendarEventService';
 
 function Dashboard() {
-    //setState is technically not used, but we use it to update parts of the state object (don't delete)
+    //setState is not used, instead use updateState (But don't delete setState)
     const [state, setState] = useState({
         assignments: [],
         filteredAssignments: [],
@@ -44,7 +44,9 @@ function Dashboard() {
             const assignmentsWithEpoch = data.map(a => ({
                 ...a,
                 eventType: a.eventType,
-                epochDate: Math.floor(new Date(a.date).getTime() / 86400000)
+                epochDate: Math.floor(new Date(a.date).getTime() / 86400000),
+                epochStart: new Date(a.startDateTime).getTime(),
+                epochEnd: new Date(a.endDateTime).getTime()
             }))
             updateState ({ assignments: assignmentsWithEpoch });
         } catch (err) {
@@ -92,7 +94,7 @@ function Dashboard() {
         e.preventDefault();
         updateState ({ error: null });
 
-        if (!state.formData.title || !state.formData.date) {
+        if (!state.formData.title || !state.formData.date || !state.formData.startTime, !state.formData.endTime) {
             updateState ({ error: 'Title and date are required!' });
             return;
         }
@@ -104,10 +106,13 @@ function Dashboard() {
                 SCHOOL_CLASS: 3
             };
 
+            const startDateTime = `${state.formData.date}T${state.formData.startTime}`;
+            const endDateTime = `${state.formData.endTime}T${state.formData.endTime}`;
+
             const data = {
                 ...state.formData,
-                startTime: parseFloat(state.formData.startTime),
-                endTime: parseFloat(state.formData.endTime),
+                startDateTime,
+                endDateTime,
                 priority: priorityMap[state.formData.priority]
             };
 
@@ -129,9 +134,9 @@ function Dashboard() {
             formData: {
                 eventType: assignment.eventType,
                 title: assignment.title,
-                date: assignment.date,
-                startTime: assignment.startTime.toString(),
-                endTime: assignment.endTime.toString()
+                date: assignment.startDateTime(0, 10), //YYYY-MM-DD
+                startTime: assignment.startDateTime.slice(11,16), //HH:MM
+                endTime: assignment.endDateTime.slice(11, 16)
             },
             editingId: assignment.id,
             showModal: true
@@ -178,8 +183,11 @@ function Dashboard() {
         });
     };
 
-    const formatTime = (hour) => {
-        return `${ hour.toString().padStart(2, '0') }:00`;
+    const formatTime = (dateTimeStr) => {
+        const dt = new Date(dateTimeStr);
+        const hr = dt.getHours().toString().padStart(2, '0');
+        const min = dt.getMinutes().toString().padStart(2, '0');
+        return `${hr}:${min}`;
     };
 
     const getTypeLabel = (eventType) => {
@@ -464,27 +472,26 @@ function Dashboard() {
                 </div>
 
                 <div className="form-group">
-                    <label>Start Time (hour 0-23) *</label>
+                    <label>Start Time *</label>
                     <input
-                        type="number"
+                        type="time"
                         name="startTime"
                         value={ state.formData.startTime }
                         onChange={ handleInputChange }
-                        min="0"
-                        max="23"
+                        min="00:00"
+                        max="23:59"
+                        step="60"
                         required
                     />
                 </div>
 
                 <div className="form-group">
-                    <label>End Time (hour 0-23) *</label>
+                    <label>End Time *</label>
                     <input
-                        type="number"
+                        type="time"
                         name="endTime"
                         value={ state.formData.endTime }
                         onChange={ handleInputChange }
-                        min="0"
-                        max="23"
                         required
                     />
                 </div>

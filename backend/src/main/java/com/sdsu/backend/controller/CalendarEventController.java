@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/api/calendar-events")
@@ -34,6 +36,9 @@ public class CalendarEventController {
     @PostMapping
     public ResponseEntity<CalendarEvent> createCalendarEvent(@RequestBody CreateEventRequest request) {
         try {
+            LocalDateTime start = LocalDateTime.parse(request.getDate() + "T" + request.getStartTime());
+            LocalDateTime end = LocalDateTime.parse(request.getDate() + "T" + request.getEndTime());
+
             // Find calendar by ID
             Optional<Calendar> calendarOpt = calendarService.findById(request.getCalendarId());
 
@@ -42,6 +47,10 @@ public class CalendarEventController {
             }
 
             CalendarEvent event = getCalendarEvent(request, calendarOpt);
+            event.setTitle(request.getTitle());
+            event.setEventType(request.getEventType());
+            event.setStartDateTime(start);
+            event.setEndDateTime(end);
 
             // Save to database
             CalendarEvent saved = calendarEventService.save(event);
@@ -57,28 +66,33 @@ public class CalendarEventController {
         Calendar calendar = calendarOpt.get();
 
         // CREATE THE CORRECT TYPE BASED ON eventType
-        CalendarEvent event = null;
+        CalendarEvent event;
         String eventType = request.getEventType() != null ? request.getEventType() : "ASSIGNMENT";
 
         switch (eventType.toUpperCase()) {
             case "SCHOOL_CLASS" -> event = new SchoolClass();
             case "SPECIAL_EVENT" -> event = new SpecialEvent();
             case "ASSIGNMENT" -> event = new Assignment();
+            default -> throw new IllegalArgumentException("Unknown event type: " + eventType);
         }
 
         // Set common fields
-        assert event != null;
-        event.setDateFromString(request.getDate());
-        event.setStartTime(request.getStartTime());
-        event.setEndTime(request.getEndTime());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime start = LocalDateTime.parse(request.getDate() + "T" + request.getStartTime(), formatter);
+        LocalDateTime end = LocalDateTime.parse(request.getDate() + "T" + request.getEndTime(), formatter);
+
+        event.setStartDateTime(start);
+        event.setEndDateTime(end);
         event.setTitle(request.getTitle());
         event.setEventType(request.getEventType());
+
         switch (eventType.toUpperCase()) {
             case "SCHOOL_CLASS" -> event.setPriority(3);
             case "SPECIAL_EVENT" -> event.setPriority(1);
             case "ASSIGNMENT" -> event.setPriority(2);
             default -> event.setPriority(99); // unknown/default
         }
+
         event.setCalendar(calendar);
         return event;
     }
@@ -110,7 +124,8 @@ public class CalendarEventController {
 
     // ===== UPDATE =====
     @PutMapping("/{id}")
-    public ResponseEntity<CalendarEvent> updateCalendarEvent(@PathVariable Long id,
+    public ResponseEntity<CalendarEvent> updateCalendarEvent(
+            @PathVariable Long id,
             @RequestBody UpdateEventRequest request) {
         try {
             Optional<CalendarEvent> eventOpt = calendarEventService.findById(id);
@@ -121,22 +136,34 @@ public class CalendarEventController {
 
             CalendarEvent event = eventOpt.get();
 
-            /*
-             If eventType changed, we need to create a new object of the new type
-             For now, we'll just update the existing event's fields
-             (Changing type requires deleting old and creating new, which is complex)
-             */
-
             // Update fields if provided
             if (request.getDate() != null) {
-                event.setDateFromString(request.getDate());
+                LocalDateTime oldStart = event.getStartDateTime();
+                LocalDateTime oldEnd = event.getEndDateTime();
+                LocalDateTime newStart = LocalDateTime.parse(
+                        request.getDate() + "T" + oldStart.toLocalTime().toString()
+                );
+                LocalDateTime newEnd = LocalDateTime.parse(
+                        request.getDate() + "T" + oldEnd.toLocalTime().toString()
+                );
+                event.setStartDateTime(newStart);
+                event.setEndDateTime(newEnd);
             }
+
             if (request.getStartTime() != null) {
-                event.setStartTime(request.getStartTime());
+                LocalDateTime newStart = LocalDateTime.parse(
+                        event.getStartDateTime() + "T" + request.getStartTime()
+                );
+                event.setStartDateTime(newStart);
             }
+
             if (request.getEndTime() != null) {
-                event.setEndTime(request.getEndTime());
+                LocalDateTime newEnd = LocalDateTime.parse(
+                        event.getEndDateTime() + "T" + request.getEndTime()
+                );
+                event.setEndDateTime(newEnd);
             }
+
             if (request.getTitle() != null) {
                 event.setTitle(request.getTitle());
             }

@@ -84,7 +84,6 @@ public class UserService {
         return userRepository.findUserByActiveStatus(activeStatus);
     }
 
-
     // Update User Information
     public User updateUser(Long id, String email, String password, String name) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));

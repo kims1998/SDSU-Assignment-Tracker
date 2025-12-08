@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
     <envs>
-      <env name="MYSQLPASSWORD" value="RootDoc45!" />
-      <env name="MYSQLUSERNAME" value="RootDoc" />
+      <env name="MYSQLUSERNAME" value="root" />
+      <env name="MYSQLPASSWORD" value="rootadmin" />
     </envs>
     <module name="backend" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.sdsu.backend.BackendApplication" />
