@@ -89,6 +89,12 @@ const LoginSignup = () => {
         }
     }
 
+    const setDummyToken = () => {
+        console.log("Skipping login, setting dummy token");
+        localStorage.setItem('userToken', 'eyJhbGciOiJIUzUxMiJ9.eyJpZCI6MywiZW1haWwiOiJ0ZXN0QDAuZWR1IiwiZXhwIjoxNzY1NTc5NDMyfQ.Tj_R5e8NJRoxAH1hr9Fau8Ip9dWORsy3BgfSPnp2_m4be3TeJWK69umQ');
+        goToDashboard();
+    }
+
   return (
     <div className='container'>
         <div className='header'>
@@ -147,7 +153,8 @@ const LoginSignup = () => {
         {/* Dashboard navigation button */}
         <div style={ {marginTop: '20px', textAlign: 'center'} }>
             <button 
-                onClick={ goToDashboard }
+                // onClick={ goToDashboard }
+                onClick={ setDummyToken }
                 style={{
                     padding: '10px 20px',
                     backgroundColor: '#d41736',
@@ -158,7 +165,7 @@ const LoginSignup = () => {
                     fontSize: '16px'
                 }}
             >
-                Go to Dashboard (Skip Login)
+                Go to Dashboard (Using Dummy Token)
             </button>
         </div>
     </div>

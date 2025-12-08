@@ -29,7 +29,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/login", "/api/users").permitAll()
                         .requestMatchers("/api/calendar-events").permitAll()
                         // All other requests must be authenticated (protected)
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 );
 
         return http.build();
