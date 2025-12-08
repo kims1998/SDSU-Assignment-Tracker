@@ -4,44 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3421039-4a76-4add-8550-d46104bfb8f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.mvn.wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/CalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/CalendarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/robots.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/public/sdsu_red.ico" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sdsu_red.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Assets/email.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Assets/email.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Assets/password.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Assets/password.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Assets/person.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Assets/person.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Dashboard/ConfirmDialog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/ConfirmDialog.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Dashboard/Dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/LoginSignup/LoginSignup.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/Components/LoginSignup/LoginSignup.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/reportWebVitals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/services/calendarEventService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/calendarEventService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/userService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/login-signup/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/setupTests.js" afterDir="false" />
-    </list>
+    <list default="true" id="e3421039-4a76-4add-8550-d46104bfb8f9" name="Changes" comment="Merging changes made on remote branch TESTING" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +49,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.BackendApplication.executor": "Run",
-    "git-widget-placeholder": "Merging Rachel",
+    "git-widget-placeholder": "Rachel",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -180,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763592347003</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merging changes made on remote branch TESTING">
+      <option name="closed" value="true" />
+      <created>1763593455760</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763593455760</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +160,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added ConfirmDialog.jsx. Made changes to Dashboard.jsx and Dashboard.css to add the popup to the page when the user deletes an assignment." />
     <MESSAGE value=".idea test" />
-    <option name="LAST_COMMIT_MESSAGE" value=".idea test" />
+    <MESSAGE value="Merging changes made on remote branch TESTING" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merging changes made on remote branch TESTING" />
   </component>
 </project>
