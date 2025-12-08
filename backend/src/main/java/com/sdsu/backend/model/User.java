@@ -1,29 +1,33 @@
 package com.sdsu.backend.model;
 
 import jakarta.persistence.*;
-
+import lombok.Getter;
+import lombok.Setter;
 import java.util.Objects;
 
 @Entity
 @Table(name = "user")
 public class User {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // Constraints for data integrity
+    @Getter @Setter
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Getter @Setter
     @Column(nullable = false)
     private String password; // Hashed Password
 
     @Column(nullable = false)
     private String name;
+    @Setter
     private boolean activeStatus = false;
     private boolean darkMode = false;
-
 
     // VVV ||CALENDAR 1-1 || VVV
 
@@ -37,6 +41,7 @@ public class User {
     private Calendar calendar;
 
     public User() {
+        //Default constructor required by JPA
     }
 
     public User(String email, String password, String name) {
@@ -46,34 +51,17 @@ public class User {
         this.activeStatus = true;
     }
 
-    // getters
+    // getters (some getters aren't here due to lombok's @Getter)
     public String getUsername() {
         return name;
     }
-    public String getPassword() {return password;}
-
-    public String getEmail() {
-        return email;
-    }
     public boolean getActiveStatus() {return activeStatus;}
     public boolean getDarkMode() {return darkMode;}
-    public Long getId() {return id;}
 
-
-    // setters
-
+    // setters (some setters aren't here due to lombok's @Setter)
     public void setUsername(String name) {
         this.name = name;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setActiveStatus(boolean status) {this.activeStatus = status;}
     public void setActiveStatusTrue() {this.activeStatus = true;}
     public void setActiveStatusFalse() {this.activeStatus = false;}
     public void setDarkModeTrue() {this.darkMode =true;}
@@ -113,5 +101,4 @@ public class User {
                 ", darkMode=" + darkMode +
                 '}';
     }
-
 }

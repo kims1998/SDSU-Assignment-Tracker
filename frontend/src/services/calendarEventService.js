@@ -7,40 +7,61 @@ const CALENDAR_ID = 1;
 const getAuthHeaders = () => {
     const token = localStorage.getItem('userToken');
     if (!token) {
-        throw new Error("User not authenicated. Please log in.");
+        console.warn("No authentication token found. User is likely not logged in.");
     }
     return {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-    };
-}
+        'Authorization': token ? `Bearer ${token}` : undefined
+    }
+ }
 
 // ===== CREATE - Add new assignment =====
-export const createAssignment = async (assignmentData) => {
-    try {
-        const response = await fetch(`${API_BASE_URL}/calendar-events`, {
-            method: 'POST',
-            headers: getAuthHeaders(),
-            body: JSON.stringify({
-                calendarId: CALENDAR_ID,
-                eventType: assignmentData.eventType || 'ASSIGNMENT',  // ADD THIS
-                title: assignmentData.title,
-                date: assignmentData.date,
-                startTime: assignmentData.startTime || 0,
-                endTime: assignmentData.endTime || 0,
-            }),
-        });
+ export const createAssignment = async (assignmentData) => {
+     console.log("Payload for creating assignment:", assignmentData);
+     try {
+         const body = {
+             calendarId: 1,
+             eventType: assignmentData.eventType,
+             title: assignmentData.title,
 
-        if (!response.ok) {
-            throw new Error('Failed to create assignment');
-        }
+             //Required by Backend
+             date: assignmentData.date,
+             startTime: assignmentData.startTime,
+             endTime: assignmentData.endTime,
 
-        return await response.json();
-    } catch (error) {
-        console.error('Error creating assignment:', error);
-        throw error;
-    }
-};
+             //For LocalDateTime Fields
+             startDateTime: assignmentData.startDateTime,
+             endDateTime: assignmentData.endDateTime,
+
+             priority: assignmentData.priority
+         };
+         console.log("📤 Sending to backend:", body);
+
+         const response = await fetch(`${API_BASE_URL}/calendar-events`, {
+             method: 'POST',
+             headers: getAuthHeaders(),
+             body: JSON.stringify(body),
+         });
+
+         const text = await response.text();
+         let data = null;
+         if (text) {
+             try { data = JSON.parse(text); } catch { data = text }
+         }
+
+         console.log("Backend Response:", response.status, data);
+
+         if (!response.ok) {
+             const msg = data?.message || `Failed to create assignment ${response.status}`;
+             throw new Error(msg);
+         }
+
+         return data;
+     } catch (error) {
+         console.error('Error creating assignment:', error);
+         throw error;
+     }
+ };
 
 // ===== READ - Get all assignments =====
 export const getAllAssignments = async () => {
@@ -68,7 +89,13 @@ export const getAllAssignments = async () => {
             throw new Error('Failed to fetch assignments');
         }
 
-        return await response.json();
+        const data = await response.json();
+
+        return data.map(a => ({
+            ...a,
+            startDateTime: a.startDateTime || `${a.date}T${a.startTime}`,
+            endDateTime: a.endDateTime || `${a.date}T${a.endTime}`,
+        }));
     } catch (error) {
         console.error('Error fetching assignments:', error);
         throw error;
@@ -78,25 +105,41 @@ export const getAllAssignments = async () => {
 // ===== UPDATE - Edit an assignment =====
 export const updateAssignment = async (id, assignmentData) => {
     try {
+        const body = {
+            calendarId: 1,
+            eventType: assignmentData.eventType,
+            title: assignmentData.title,
+
+            //Required by Backend
+            date: assignmentData.date,
+            startTime: assignmentData.startTime,
+            endTime: assignmentData.endTime,
+
+            //For LocalDateTime Fields
+            startDateTime: assignmentData.startDateTime,
+            endDateTime: assignmentData.endDateTime,
+
+            priority: assignmentData.priority
+        };
+        console.log("📤 Updating:", body);
+
         const response = await fetch(`${API_BASE_URL}/calendar-events/${id}`, {
             method: 'PUT',
             headers: getAuthHeaders(),
-            body: JSON.stringify({
-                calendarId: CALENDAR_ID,
-                title: assignmentData.title,
-                date: assignmentData.date,
-                startTime: assignmentData.startTime,
-                endTime: assignmentData.endTime,
-                eventType: assignmentData.eventType || 'ASSIGNMENT',
-                priority: assignmentData.priority
-            }),
+            body: JSON.stringify(body)
         });
 
-        if (!response.ok) {
-            throw new Error('Failed to update assignment');
+        const text = await response.text();
+        let data = null;
+        if (text) {
+            try { data = JSON.parse(text); } catch { data = text }
         }
 
-        return await response.json();
+        if (!response.ok) {
+            const msg = data?.message || `Failed to update assignment ${response.status}`;
+            throw new Error(msg);
+        }
+        return data;
     } catch (error) {
         console.error('Error updating assignment:', error);
         throw error;
@@ -108,11 +151,16 @@ export const deleteAssignment = async (id) => {
     try {
         const response = await fetch(`${API_BASE_URL}/calendar-events/${id}`, {
             method: 'DELETE',
-            headers: getAuthHeaders(),
+            headers: getAuthHeaders()
         });
 
         if (!response.ok) {
-            throw new Error('Failed to delete assignment');
+            const text = await response.text();
+            let msg = `Failed to delete assignment (${response.status})`;
+            if (text) {
+                try { msg = JSON.parse(text)?.message || msg } catch {}
+            }
+            throw new Error(msg);
         }
 
         return true;
