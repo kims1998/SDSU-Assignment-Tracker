@@ -14,11 +14,11 @@ public interface CalendarEventRepository extends JpaRepository <CalendarEvent, L
     @Query("""
         SELECT e FROM CalendarEvent e
         WHERE e.calendar.id = :calendarId
-        AND e.epochStart >= :epoch
-        AND e.epochEnd <= :epoch
+        AND e.epochEnd >= :startEpoch
+        AND e.epochStart <= :endEpoch
    """)
 
-    List<CalendarEvent> findEventsOnDay(Long calendarId, long epoch);
+    List<CalendarEvent> findEventsOnDay(Long calendarId, long startEpoch, long endEpoch);
 
     Optional<CalendarEvent> findByCalendarIdAndTitle (Long calendarId, String title);
 

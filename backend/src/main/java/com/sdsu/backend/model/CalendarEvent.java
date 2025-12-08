@@ -85,9 +85,11 @@ public abstract class CalendarEvent {
 
     public void setStartDateTime(LocalDateTime dt) {
         this.startDateTime = dt;
+        updateEpochField();
     }
 
     public void setEndDateTime(LocalDateTime dt) {
         this.endDateTime = dt;
+        updateEpochField();
     }
 }

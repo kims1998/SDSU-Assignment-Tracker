@@ -22,8 +22,8 @@ function Dashboard() {
             eventType: 'ASSIGNMENT',
             title: '',
             date: '',
-            startTime: '9',
-            endTime: '10',
+            startTime: '09:00',
+            endTime: '10:00',
         }
     });
 
@@ -94,8 +94,23 @@ function Dashboard() {
         e.preventDefault();
         updateState ({ error: null });
 
-        if (!state.formData.title || !state.formData.date || !state.formData.startTime, !state.formData.endTime) {
-            updateState ({ error: 'Title and date are required!' });
+        const { title, date, startTime, endTime, eventType } = state.formData;
+
+        if (!title || !date || !startTime || !endTime) {
+            updateState ({ error: 'Title, Date, Start Time, and End Time are required!' });
+            return;
+        }
+
+        const start = new Date(`${date}T${startTime}:00`);
+        const end = new Date(`${date}T${endTime}:00`);
+
+        if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+            updateState({ error: 'Invalid date or time format!' });
+            return;
+        }
+
+        if (end <= start) {
+            updateState({ error: 'End Time must be after Start Time!'});
             return;
         }
 
@@ -106,21 +121,23 @@ function Dashboard() {
                 SCHOOL_CLASS: 3
             };
 
-            const startDateTime = `${state.formData.date}T${state.formData.startTime}`;
-            const endDateTime = `${state.formData.endTime}T${state.formData.endTime}`;
-
-            const data = {
-                ...state.formData,
-                startDateTime,
-                endDateTime,
-                priority: priorityMap[state.formData.priority]
+            const payload = {
+                eventType,
+                title,
+                date,
+                startTime,
+                endTime,
+                startDateTime: start.toISOString(),
+                endDateTime: end.toISOString(),
+                priority: priorityMap[eventType]
             };
 
             if (state.editingId) {
-                await updateAssignment(state.editingId, data);
+                await updateAssignment(state.editingId, payload);
             } else {
-                await createAssignment(data);
+                await createAssignment(payload);
             }
+
             closeModal();
             await fetchAssignments();
         } catch (err) {
@@ -134,7 +151,7 @@ function Dashboard() {
             formData: {
                 eventType: assignment.eventType,
                 title: assignment.title,
-                date: assignment.startDateTime(0, 10), //YYYY-MM-DD
+                date: assignment.startDateTime.slice(0, 10), //YYYY-MM-DD
                 startTime: assignment.startDateTime.slice(11,16), //HH:MM
                 endTime: assignment.endDateTime.slice(11, 16)
             },
@@ -163,8 +180,8 @@ function Dashboard() {
                 eventType: 'ASSIGNMENT',
                 title: '',
                 date: '',
-                startTime: '9',
-                endTime: '10'
+                startTime: '09:00',
+                endTime: '10:00'
             })
         });
     };
@@ -176,8 +193,8 @@ function Dashboard() {
                 eventType: 'ASSIGNMENT',
                 title: '',
                 date: '',
-                startTime: '9',
-                endTime: '10'
+                startTime: '09:00',
+                endTime: '10:00'
             },
             showModal: true
         });
@@ -268,7 +285,7 @@ function Dashboard() {
                         <div
                             key={ event.id }
                             className={ `calendar-event-dot ${ getTypeClass(event.eventType) }` }
-                            title={ `${ event.title }(${ formatTime(event.startTime) } - ${ formatTime(event.endTime) })` }
+                            title={ `${ event.title }(${ formatTime(event.startDateTime) } - ${ formatTime(event.endDateTime) })` }
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleEdit(event);
@@ -398,7 +415,7 @@ function Dashboard() {
                             </div>
                         </div>
                         <div className="event-details">
-                            📅 { assignment.date } | ⏰ { formatTime(assignment.startTime) } - { formatTime(assignment.endTime) }
+                            📅 { assignment.date } | ⏰ { formatTime(assignment.startDateTime) } - { formatTime(assignment.endDateTime) }
                         </div>
                         <div className="event-actions">
                             <button className="btn btn-small" onClick={() => handleEdit(assignment)}>

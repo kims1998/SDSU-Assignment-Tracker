@@ -23,7 +23,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     public User createUser(String email, String password, String name) {
         User user = new User(email, password, name);
 
@@ -35,7 +34,6 @@ public class UserService {
 
         return userRepository.save(user);
     }
-
 
     public User save(User user) {
         if (user == null) {
@@ -50,8 +48,6 @@ public class UserService {
 
         return userRepository.save(user);
     }
-
-
 
     // Find User by ID
     public Optional<User> findById (Long id) { return userRepository.findById(id); }

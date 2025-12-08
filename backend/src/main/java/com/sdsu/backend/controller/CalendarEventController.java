@@ -12,6 +12,8 @@ import com.sdsu.backend.dto.UpdateEventRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -35,26 +37,10 @@ public class CalendarEventController {
     // ===== CREATE =====
     @PostMapping
     public ResponseEntity<CalendarEvent> createCalendarEvent(@RequestBody CreateEventRequest request) {
+        LOG.info("Received request: " + request);
         try {
-            LocalDateTime start = LocalDateTime.parse(request.getDate() + "T" + request.getStartTime());
-            LocalDateTime end = LocalDateTime.parse(request.getDate() + "T" + request.getEndTime());
-
-            // Find calendar by ID
-            Optional<Calendar> calendarOpt = calendarService.findById(request.getCalendarId());
-
-            if (calendarOpt.isEmpty()) {
-                return ResponseEntity.badRequest().build();
-            }
-
-            CalendarEvent event = getCalendarEvent(request, calendarOpt);
-            event.setTitle(request.getTitle());
-            event.setEventType(request.getEventType());
-            event.setStartDateTime(start);
-            event.setEndDateTime(end);
-
-            // Save to database
+            CalendarEvent event = buildCalendarEventFromRequest(request);
             CalendarEvent saved = calendarEventService.save(event);
-
             return ResponseEntity.status(HttpStatus.CREATED).body(saved);
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage(), e);
@@ -62,10 +48,13 @@ public class CalendarEventController {
         }
     }
 
-    private static CalendarEvent getCalendarEvent(CreateEventRequest request, Optional<Calendar> calendarOpt) {
+    private CalendarEvent buildCalendarEventFromRequest(CreateEventRequest request) {
+        // Find calendar by ID
+        Optional<Calendar> calendarOpt = calendarService.findById(request.getCalendarId());
+        if (calendarOpt.isEmpty()) throw new IllegalArgumentException("Calendar not found");
+
         Calendar calendar = calendarOpt.get();
 
-        // CREATE THE CORRECT TYPE BASED ON eventType
         CalendarEvent event;
         String eventType = request.getEventType() != null ? request.getEventType() : "ASSIGNMENT";
 
@@ -73,10 +62,9 @@ public class CalendarEventController {
             case "SCHOOL_CLASS" -> event = new SchoolClass();
             case "SPECIAL_EVENT" -> event = new SpecialEvent();
             case "ASSIGNMENT" -> event = new Assignment();
-            default -> throw new IllegalArgumentException("Unknown event type: " + eventType);
+            default -> throw new IllegalArgumentException("Unknown event tpye: " + eventType);
         }
 
-        // Set common fields
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         LocalDateTime start = LocalDateTime.parse(request.getDate() + "T" + request.getStartTime(), formatter);
         LocalDateTime end = LocalDateTime.parse(request.getDate() + "T" + request.getEndTime(), formatter);
@@ -85,28 +73,52 @@ public class CalendarEventController {
         event.setEndDateTime(end);
         event.setTitle(request.getTitle());
         event.setEventType(request.getEventType());
+        event.setCalendar(calendar);
 
+        //Priority Mapping
         switch (eventType.toUpperCase()) {
             case "SCHOOL_CLASS" -> event.setPriority(3);
             case "SPECIAL_EVENT" -> event.setPriority(1);
             case "ASSIGNMENT" -> event.setPriority(2);
             default -> event.setPriority(99); // unknown/default
         }
-
-        event.setCalendar(calendar);
         return event;
     }
 
-    // ===== READ ALL =====
+    // ===== READ EVENTS BY CALENDAR & DATE RANGE =====
     @GetMapping
-    public ResponseEntity<List<CalendarEvent>> getAllEventsByCalendar(@RequestParam Long calendarId) {
+    public ResponseEntity<List<CalendarEvent>> getAllEventsByCalendarAndDate(
+            @RequestParam Long calendarId,
+            @RequestParam(required = false) String date,
+            @RequestParam(required = false) String startDate,
+            @RequestParam(required = false) String endDate
+            ) {
         try {
-            String startDate = "2025-01-01";
-            String endDate = "2025-12-31";
-            List<CalendarEvent> events = calendarEventService.getByDateRangeEpoch(calendarId, startDate, endDate);
+            List<CalendarEvent> events;
 
+            if (date != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDateTime start = LocalDateTime.parse(date + "T00:00");
+                LocalDateTime end = LocalDateTime.parse(date + "T23:59");
+
+                events = calendarEventService.getByEpochRange(
+                        calendarId,
+                        start.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(),
+                        end.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+                );
+            } else if (startDate != null && endDate != null) {
+                LocalDateTime start = LocalDateTime.parse(startDate + "T00:00");
+                LocalDateTime end = LocalDateTime.parse(endDate + "T23:59");
+
+                events = calendarEventService.getByEpochRange(
+                        calendarId,
+                        start.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(),
+                        end.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+                );
+            } else {
+                events = calendarEventService.getAllByCalendar(calendarId);
+            }
             return ResponseEntity.ok(events);
-
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
@@ -116,9 +128,8 @@ public class CalendarEventController {
     // ===== READ ONE =====
     @GetMapping("/{id}")
     public ResponseEntity<CalendarEvent> getEventById(@PathVariable Long id) {
-        Optional<CalendarEvent> event = calendarEventService.findById(id);
-
-        return event.map(ResponseEntity::ok)
+        return calendarEventService.findById(id)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -129,51 +140,13 @@ public class CalendarEventController {
             @RequestBody UpdateEventRequest request) {
         try {
             Optional<CalendarEvent> eventOpt = calendarEventService.findById(id);
-
-            if (eventOpt.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
+            if (eventOpt.isEmpty()) return ResponseEntity.notFound().build();
 
             CalendarEvent event = eventOpt.get();
-
-            // Update fields if provided
-            if (request.getDate() != null) {
-                LocalDateTime oldStart = event.getStartDateTime();
-                LocalDateTime oldEnd = event.getEndDateTime();
-                LocalDateTime newStart = LocalDateTime.parse(
-                        request.getDate() + "T" + oldStart.toLocalTime().toString()
-                );
-                LocalDateTime newEnd = LocalDateTime.parse(
-                        request.getDate() + "T" + oldEnd.toLocalTime().toString()
-                );
-                event.setStartDateTime(newStart);
-                event.setEndDateTime(newEnd);
-            }
-
-            if (request.getStartTime() != null) {
-                LocalDateTime newStart = LocalDateTime.parse(
-                        event.getStartDateTime() + "T" + request.getStartTime()
-                );
-                event.setStartDateTime(newStart);
-            }
-
-            if (request.getEndTime() != null) {
-                LocalDateTime newEnd = LocalDateTime.parse(
-                        event.getEndDateTime() + "T" + request.getEndTime()
-                );
-                event.setEndDateTime(newEnd);
-            }
-
-            if (request.getTitle() != null) {
-                event.setTitle(request.getTitle());
-            }
-            if (request.getEventType() != null) {
-                event.setEventType(request.getEventType());
-            }
+            calendarEventService.updateEventFromRequest(event, request);
 
             CalendarEvent updated = calendarEventService.save(event);
             return ResponseEntity.ok(updated);
-
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
@@ -186,7 +159,6 @@ public class CalendarEventController {
         try {
             calendarEventService.deleteById(id);
             return ResponseEntity.noContent().build();
-
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();
