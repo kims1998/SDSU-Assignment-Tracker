@@ -4,90 +4,143 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3421039-4a76-4add-8550-d46104bfb8f9" name="Changes" comment="Merging changes made on remote branch TESTING" />
+    <list default="true" id="6ede3b59-a98d-40c9-9021-bbd3052ed95f" name="Changes" comment=".idea related commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateEventRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateEventRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/CalendarEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/CalendarEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/repository/CalendarEventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/repository/CalendarEventRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/CalendarEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/CalendarEventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/calendarEventService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/calendarEventService.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="main" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+        <option value="JSX File" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="nicoBackup" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenRunner">
-    <option name="environmentProperties">
-      <map>
-        <entry key="JAVA_HOME" value="/opt/homebrew/opt/openjdk@17" />
-      </map>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOQIxB_c6z-nFF&quot;,
+        &quot;number&quot;: 30
+      },
+      &quot;lastSeen&quot;: 1763429997231
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOQIxB_c6z-a34&quot;,
+        &quot;number&quot;: 29
+      },
+      &quot;lastSeen&quot;: 1763429997288
+    }
+  ]
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
     </option>
-    <option name="jreName" value="homebrew-17" />
-    <option name="skipTests" value="true" />
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:/kims1998/SDSU-Assignment-Tracker.git&quot;,
+    &quot;accountId&quot;: &quot;f14fbb6b-6fe6-40d3-a006-0153b4967161&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="34fLVNZEeXyiNhjaNMBApUBWWwM" />
+  <component name="ProjectId" id="35PNja5C5XUHgq0k0Sy1fX1KGwy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BackendApplication.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.BackendApplication.executor": "Run",
-    "git-widget-placeholder": "Rachel",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BackendApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Charles&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/charlesk/Library/Application Support/JetBrains/IntelliJIdea2025.2/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <envs>
-        <env name="MYSQLUSERNAME" value="tracker_user" />
-        <env name="MYSQLPASSWORD" value="TrackerPass123!" />
+        <env name="MYSQLUSERNAME" value="root" />
+        <env name="MYSQLPASSWORD" value="rootadmin" />
       </envs>
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.sdsu.backend.BackendApplication" />
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -101,55 +154,47 @@
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="StructureViewState">
-    <option name="selectedTab" value="Logical" />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e3421039-4a76-4add-8550-d46104bfb8f9" name="Changes" comment="" />
-      <created>1761599703278</created>
+      <changelist id="6ede3b59-a98d-40c9-9021-bbd3052ed95f" name="Changes" comment="" />
+      <created>1763007883545</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1761599703278</updated>
-      <workItem from="1761599704542" duration="92000" />
-      <workItem from="1761599926665" duration="2064000" />
-      <workItem from="1761602121278" duration="170000" />
-      <workItem from="1761602301629" duration="369000" />
-      <workItem from="1761602681104" duration="418000" />
-      <workItem from="1761603105762" duration="470000" />
-      <workItem from="1761603579849" duration="291000" />
-      <workItem from="1761603882767" duration="653000" />
-      <workItem from="1761604538457" duration="43000" />
-      <workItem from="1761604583344" duration="2213000" />
-      <workItem from="1761606802627" duration="2788000" />
-      <workItem from="1762331169070" duration="4612000" />
-      <workItem from="1763405192410" duration="12455000" />
-      <workItem from="1763592358635" duration="147000" />
+      <updated>1763007883545</updated>
+      <workItem from="1763007884592" duration="1741000" />
+      <workItem from="1763010258194" duration="843000" />
+      <workItem from="1763011109575" duration="977000" />
+      <workItem from="1763012092300" duration="1648000" />
+      <workItem from="1763418405309" duration="2150000" />
+      <workItem from="1763420740526" duration="6102000" />
+      <workItem from="1763427355101" duration="908000" />
+      <workItem from="1763429033293" duration="1513000" />
+      <workItem from="1763592141549" duration="29664000" />
+      <workItem from="1764822011207" duration="8236000" />
     </task>
-    <task id="LOCAL-00001" summary="Added ConfirmDialog.jsx. Made changes to Dashboard.jsx and Dashboard.css to add the popup to the page when the user deletes an assignment.">
+    <task id="LOCAL-00001" summary="&quot;Committing to ensure current branch is proper&quot;">
       <option name="closed" value="true" />
-      <created>1763545482788</created>
+      <created>1763011322531</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1763545482788</updated>
+      <updated>1763011322532</updated>
     </task>
-    <task id="LOCAL-00002" summary=".idea test">
+    <task id="LOCAL-00002" summary="&quot;Removing from local branch to see if it fixes merge freezing&quot;">
       <option name="closed" value="true" />
-      <created>1763592347003</created>
+      <created>1763428610027</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1763592347003</updated>
+      <updated>1763428610027</updated>
     </task>
-    <task id="LOCAL-00003" summary="Merging changes made on remote branch TESTING">
+    <task id="LOCAL-00003" summary=".idea related commit">
       <option name="closed" value="true" />
-      <created>1763593455760</created>
+      <created>1764822115414</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1763593455760</updated>
+      <updated>1764822115414</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -157,10 +202,22 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added ConfirmDialog.jsx. Made changes to Dashboard.jsx and Dashboard.css to add the popup to the page when the user deletes an assignment." />
-    <MESSAGE value=".idea test" />
-    <MESSAGE value="Merging changes made on remote branch TESTING" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merging changes made on remote branch TESTING" />
+    <MESSAGE value="&quot;Committing to ensure current branch is proper&quot;" />
+    <MESSAGE value="&quot;Reincluding controller folder and it's files included from previous commits&quot;" />
+    <MESSAGE value="&quot;Removing from local branch to see if it fixes merge freezing&quot;" />
+    <MESSAGE value=".idea related commit" />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea related commit" />
   </component>
 </project>
