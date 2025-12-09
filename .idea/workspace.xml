@@ -6,18 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ede3b59-a98d-40c9-9021-bbd3052ed95f" name="Changes" comment=".idea related commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateEventRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateEventRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/CalendarEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/CalendarEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/repository/CalendarEventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/repository/CalendarEventRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/CalendarEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/CalendarEventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/calendarEventService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/calendarEventService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
