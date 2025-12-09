@@ -8,6 +8,8 @@ import {
     deleteAssignment
 } from '../../services/calendarEventService';
 
+import ConfirmDialog from "./ConfirmDialog";
+
 function Dashboard() {
     //setState is not used, instead use updateState (But don't delete setState)
     const [state, setState] = useState({
@@ -25,18 +27,23 @@ function Dashboard() {
             date: '',
             startTime: '09:00',
             endTime: '10:00',
-        }
+        },
+        // Added for confirmation popup
+        showDeleteConfirm: false,
+        deleteTarget: null,   // assignment to be deleted
+        deleteBusy: false,
+        deleteError: null,
     });
 
     const updateState = (updates) =>
         setState(prev => ({
-            ...prev,
-            ...updates
-        })
-    );
+                ...prev,
+                ...updates
+            })
+        );
 
     const fetchAssignments = useCallback(async () => {
-        updateState ({
+        updateState({
             loading: true,
             error: null
         });
@@ -48,13 +55,13 @@ function Dashboard() {
                 epochDate: Math.floor(new Date(a.date).getTime() / 86400000),
                 epochStart: new Date(a.startDateTime).getTime(),
                 epochEnd: new Date(a.endDateTime).getTime()
-            }))
-            updateState ({ assignments: assignmentsWithEpoch });
+            }));
+            updateState({ assignments: assignmentsWithEpoch });
         } catch (err) {
-            updateState ({ error: 'Failed to load assignments. Make sure backend is running!' });
+            updateState({ error: 'Failed to load assignments. Make sure backend is running!' });
             console.error(err);
         } finally {
-            updateState ({ loading: false });
+            updateState({ loading: false });
         }
     }, []);
 
@@ -83,7 +90,7 @@ function Dashboard() {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        updateState ({
+        updateState({
             formData: {
                 ...state.formData,
                 [name]: value
@@ -93,12 +100,12 @@ function Dashboard() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        updateState ({ error: null });
+        updateState({ error: null });
 
         const { title, date, startTime, endTime, eventType } = state.formData;
 
         if (!title || !date || !startTime || !endTime) {
-            updateState ({ error: 'Title, Date, Start Time, and End Time are required!' });
+            updateState({ error: 'Title, Date, Start Time, and End Time are required!' });
             return;
         }
 
@@ -111,7 +118,7 @@ function Dashboard() {
         }
 
         if (end <= start) {
-            updateState({ error: 'End Time must be after Start Time!'});
+            updateState({ error: 'End Time must be after Start Time!' });
             return;
         }
 
@@ -142,18 +149,18 @@ function Dashboard() {
             closeModal();
             await fetchAssignments();
         } catch (err) {
-            updateState ({ error: 'Failed to save assignment!' });
+            updateState({ error: 'Failed to save assignment!' });
             console.error(err);
         }
     };
 
     const handleEdit = (assignment) => {
-        updateState ({
+        updateState({
             formData: {
                 eventType: assignment.eventType,
                 title: assignment.title,
                 date: assignment.startDateTime.slice(0, 10), //YYYY-MM-DD
-                startTime: assignment.startDateTime.slice(11,16), //HH:MM
+                startTime: assignment.startDateTime.slice(11, 16), //HH:MM
                 endTime: assignment.endDateTime.slice(11, 16)
             },
             editingId: assignment.id,
@@ -161,34 +168,71 @@ function Dashboard() {
         });
     };
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this assignment?')) {
-            try {
-                await deleteAssignment(id);
-                await fetchAssignments();
-            } catch (err) {
-                updateState ({ error: 'Failed to delete assignment!' });
-                console.error(err);
-            }
+    // Old simple delete (now replaced by confirm dialog)
+    // const handleDelete = async (id) => {
+    //     if (window.confirm('Are you sure you want to delete this assignment?')) {
+    //         try {
+    //             await deleteAssignment(id);
+    //             await fetchAssignments();
+    //         } catch (err) {
+    //             updateState ({ error: 'Failed to delete assignment!' });
+    //             console.error(err);
+    //         }
+    //     }
+    // };
+
+    // When user clicks the trash can button
+    const askDelete = (assignment) => {
+        updateState({
+            showDeleteConfirm: true,
+            deleteTarget: assignment,
+            deleteError: null,
+        });
+    };
+
+    const closeDeleteConfirm = () => {
+        updateState({
+            showDeleteConfirm: false,
+            deleteTarget: null,
+            deleteError: null,
+            deleteBusy: false,
+        });
+    };
+
+    // Called when user confirms dialog in confirmation popup
+    const handleDeleteConfirmed = async () => {
+        if (!state.deleteTarget) return;
+
+        updateState({ deleteBusy: true, deleteError: null });
+
+        try {
+            await deleteAssignment(state.deleteTarget.id);
+            await fetchAssignments();
+            closeDeleteConfirm();
+        } catch (err) {
+            updateState({ deleteError: 'Failed to delete assignment!' });
+            console.error(err);
+        } finally {
+            updateState({ deleteBusy: false });
         }
     };
 
     const closeModal = () => {
-        updateState ({
+        updateState({
             showModal: false,
             editingId: null,
-            formData: ({
+            formData: {
                 eventType: 'ASSIGNMENT',
                 title: '',
                 date: '',
                 startTime: '09:00',
                 endTime: '10:00'
-            })
+            }
         });
     };
 
     const showCreateModal = () => {
-        updateState ({
+        updateState({
             editingId: null,
             formData: {
                 eventType: 'ASSIGNMENT',
@@ -248,8 +292,8 @@ function Dashboard() {
         const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         dayHeaders.forEach(day => {
             days.push(
-                <div key={ `header-${day}` } className="calendar-day-header">
-                    { day }
+                <div key={`header-${day}`} className="calendar-day-header">
+                    {day}
                 </div>
             );
         });
@@ -258,8 +302,8 @@ function Dashboard() {
         for (let i = startingDayOfWeek - 1; i >= 0; i--) {
             const dayNum = prevMonthLastDay - i;
             days.push(
-                <div key={ `prev-${ dayNum }` } className="calendar-day other-month">
-                    <div className="calendar-day-number">{ dayNum }</div>
+                <div key={`prev-${dayNum}`} className="calendar-day other-month">
+                    <div className="calendar-day-number">{dayNum}</div>
                 </div>
             );
         }
@@ -278,25 +322,25 @@ function Dashboard() {
 
             days.push(
                 <div
-                    key={ `current-${ day }` }
-                    className={ `calendar-day ${ isToday ? 'today' : '' }` }
+                    key={`current-${day}`}
+                    className={`calendar-day ${isToday ? 'today' : ''}`}
                 >
-                    <div className="calendar-day-number">{ day }</div>
+                    <div className="calendar-day-number">{day}</div>
                     {dayEvents.slice(0, 3).map(event => (
                         <div
-                            key={ event.id }
-                            className={ `calendar-event-dot ${ getTypeClass(event.eventType) }` }
-                            title={ `${ event.title }(${ formatTime(event.startDateTime) } - ${ formatTime(event.endDateTime) })` }
+                            key={event.id}
+                            className={`calendar-event-dot ${getTypeClass(event.eventType)}`}
+                            title={`${event.title} (${formatTime(event.startDateTime)} - ${formatTime(event.endDateTime)})`}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleEdit(event);
                             }}
                         >
-                            { event.title }
+                            {event.title}
                         </div>
                     ))}
                     {dayEvents.length > 3 && (
-                        <div className="calendar-event-count">+{ dayEvents.length - 3 } more</div>
+                        <div className="calendar-event-count">+{dayEvents.length - 3} more</div>
                     )}
                 </div>
             );
@@ -307,8 +351,8 @@ function Dashboard() {
         const remainingCells = 42 - totalCells;
         for (let day = 1; day <= remainingCells; day++) {
             days.push(
-                <div key={ `next-${ day }` } className="calendar-day other-month">
-                    <div className="calendar-day-number">{ day }</div>
+                <div key={`next-${day}`} className="calendar-day other-month">
+                    <div className="calendar-day-number">{day}</div>
                 </div>
             );
         }
@@ -319,19 +363,19 @@ function Dashboard() {
     };
 
     const previousMonth = () => {
-        updateState ({
+        updateState({
             currentCalendarDate: new Date(state.currentCalendarDate.setMonth(state.currentCalendarDate.getMonth() - 1, 1))
         });
     };
 
     const nextMonth = () => {
-        updateState ({
+        updateState({
             currentCalendarDate: new Date(state.currentCalendarDate.setMonth(state.currentCalendarDate.getMonth() + 1, 1))
         });
     };
 
     const goToToday = () => {
-        updateState ({
+        updateState({
             currentCalendarDate: new Date()
         });
     };
@@ -349,38 +393,38 @@ function Dashboard() {
 
             {/* Controls */}
             <div className="controls">
-                <button className="btn" onClick={ showCreateModal }>➕ Add New Event</button>
-                <button className="btn" onClick={ fetchAssignments }>🔄 Refresh</button>
+                <button className="btn" onClick={showCreateModal}>➕ Add New Event</button>
+                <button className="btn" onClick={fetchAssignments}>🔄 Refresh</button>
 
                 <div className="filter-buttons">
                     <strong>Filter by type:</strong>
                     <button
-                        className={ `filter-btn ${ state.currentFilter === 'ALL' ? 'active' : '' }` }
-                        onClick={() => updateState ({
+                        className={`filter-btn ${state.currentFilter === 'ALL' ? 'active' : ''}`}
+                        onClick={() => updateState({
                             currentFilter: 'ALL'
                         })}
                     >
                         All
                     </button>
                     <button
-                        className={ `filter-btn ${ state.currentFilter === 'ASSIGNMENT' ? 'active' : '' }` }
-                        onClick={() => updateState ({
+                        className={`filter-btn ${state.currentFilter === 'ASSIGNMENT' ? 'active' : ''}`}
+                        onClick={() => updateState({
                             currentFilter: 'ASSIGNMENT'
                         })}
                     >
                         📚 Assignments
                     </button>
                     <button
-                        className={ `filter-btn ${ state.currentFilter === 'SCHOOL_CLASS' ? 'active' : '' }` }
-                        onClick={() => updateState ({
+                        className={`filter-btn ${state.currentFilter === 'SCHOOL_CLASS' ? 'active' : ''}`}
+                        onClick={() => updateState({
                             currentFilter: 'SCHOOL_CLASS'
                         })}
                     >
                         🎓 Classes
                     </button>
                     <button
-                        className={ `filter-btn ${ state.currentFilter === 'SPECIAL_EVENT' ? 'active' : '' }` }
-                        onClick={() => updateState ({
+                        className={`filter-btn ${state.currentFilter === 'SPECIAL_EVENT' ? 'active' : ''}`}
+                        onClick={() => updateState({
                             currentFilter: 'SPECIAL_EVENT'
                         })}
                     >
@@ -390,11 +434,11 @@ function Dashboard() {
             </div>
 
             {/* Error Message */}
-            { state.error && <div className="error-message">{ state.error }</div> }
+            {state.error && <div className="error-message">{state.error}</div>}
 
             {/* Events Grid */}
             <div className="events-grid">
-                { state.loading && <p>Loading assignments...</p> }
+                {state.loading && <p>Loading assignments...</p>}
 
                 {!state.loading && state.filteredAssignments.length === 0 && (
                     <div className="empty-state">
@@ -405,25 +449,28 @@ function Dashboard() {
                 )}
 
                 {!state.loading && state.filteredAssignments.map(assignment => (
-                    <div key={ assignment.id } className={ `event-card ${getTypeClass(assignment.eventType)}` }>
+                    <div key={assignment.id} className={`event-card ${getTypeClass(assignment.eventType)}`}>
                         <div className="event-header">
                             <div>
                                 <div className="event-title">
-                                    { assignment.title }
+                                    {assignment.title}
                                 </div>
-                                <span className={ `event-type type-${getTypeClass(assignment.eventType)}` }>
-                                    { getTypeLabel(assignment.eventType) }
+                                <span className={`event-type type-${getTypeClass(assignment.eventType)}`}>
+                                    {getTypeLabel(assignment.eventType)}
                                 </span>
                             </div>
                         </div>
                         <div className="event-details">
-                            📅 { assignment.date } | ⏰ { formatTime(assignment.startDateTime) } - { formatTime(assignment.endDateTime) }
+                            📅 {assignment.date} | ⏰ {formatTime(assignment.startDateTime)} - {formatTime(assignment.endDateTime)}
                         </div>
                         <div className="event-actions">
                             <button className="btn btn-small" onClick={() => handleEdit(assignment)}>
                                 ✏️ Edit
                             </button>
-                            <button className="btn btn-delete btn-small" onClick={() => handleDelete(assignment.id)}>
+                            <button
+                                className="btn btn-delete btn-small"
+                                onClick={() => askDelete(assignment)}
+                            >
                                 🗑️ Delete
                             </button>
                         </div>
@@ -434,95 +481,116 @@ function Dashboard() {
             {/* Calendar View */}
             <div className="calendar-container">
                 <div className="calendar-header">
-                    <h2>{ calendar.title }</h2>
+                    <h2>{calendar.title}</h2>
                     <div className="calendar-nav">
-                        <button onClick={ previousMonth }>← Prev</button>
-                        <button onClick={ goToToday }>Today</button>
-                        <button onClick={ nextMonth }>Next →</button>
+                        <button onClick={previousMonth}>← Prev</button>
+                        <button onClick={goToToday}>Today</button>
+                        <button onClick={nextMonth}>Next →</button>
                     </div>
                 </div>
                 <div className="calendar-grid">
-                    { calendar.days }
+                    {calendar.days}
                 </div>
             </div>
 
-{/* Modal */}
-{ state.showModal && (
-    <div className="modal active">
-        <div className="modal-content">
-            <h2>{ state.editingId ? 'Edit Event' : 'Create New Event' }</h2>
-            <form onSubmit={ handleSubmit }>
-                {/* ADD THIS EVENT TYPE SELECTOR */}
-                <div className="form-group">
-                    <label>Event Type *</label>
-                    <select
-                        name="eventType"
-                        value={ state.formData.eventType }
-                        onChange={ handleInputChange }
-                        required
-                    >
-                        <option value="ASSIGNMENT">📚 Assignment</option>
-                        <option value="SCHOOL_CLASS">🎓 Class</option>
-                        <option value="SPECIAL_EVENT">⭐ Special Event</option>
-                    </select>
-                </div>
+            {/* Modal */}
+            {state.showModal && (
+                <div className="modal active">
+                    <div className="modal-content">
+                        <h2>{state.editingId ? 'Edit Event' : 'Create New Event'}</h2>
+                        <form onSubmit={handleSubmit}>
+                            {/* EVENT TYPE SELECTOR */}
+                            <div className="form-group">
+                                <label>Event Type *</label>
+                                <select
+                                    name="eventType"
+                                    value={state.formData.eventType}
+                                    onChange={handleInputChange}
+                                    required
+                                >
+                                    <option value="ASSIGNMENT">📚 Assignment</option>
+                                    <option value="SCHOOL_CLASS">🎓 Class</option>
+                                    <option value="SPECIAL_EVENT">⭐ Special Event</option>
+                                </select>
+                            </div>
 
-                <div className="form-group">
-                    <label>Title *</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={ state.formData.title }
-                        onChange={ handleInputChange }
-                        placeholder="CS250 Final Project"
-                        required
-                    />
-                </div>
+                            <div className="form-group">
+                                <label>Title *</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={state.formData.title}
+                                    onChange={handleInputChange}
+                                    placeholder="CS250 Final Project"
+                                    required
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <label>Date *</label>
-                    <input
-                        type="date"
-                        name="date"
-                        value={ state.formData.date }
-                        onChange={ handleInputChange }
-                        required
-                    />
-                </div>
+                            <div className="form-group">
+                                <label>Date *</label>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={state.formData.date}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <label>Start Time *</label>
-                    <input
-                        type="time"
-                        name="startTime"
-                        value={ state.formData.startTime }
-                        onChange={ handleInputChange }
-                        min="00:00"
-                        max="23:59"
-                        step="60"
-                        required
-                    />
-                </div>
+                            <div className="form-group">
+                                <label>Start Time *</label>
+                                <input
+                                    type="time"
+                                    name="startTime"
+                                    value={state.formData.startTime}
+                                    onChange={handleInputChange}
+                                    min="00:00"
+                                    max="23:59"
+                                    step="60"
+                                    required
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <label>End Time *</label>
-                    <input
-                        type="time"
-                        name="endTime"
-                        value={ state.formData.endTime }
-                        onChange={ handleInputChange }
-                        required
-                    />
-                </div>
+                            <div className="form-group">
+                                <label>End Time *</label>
+                                <input
+                                    type="time"
+                                    name="endTime"
+                                    value={state.formData.endTime}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <button type="submit" className="btn">💾 Save Event</button>
-                    <button type="button" className="btn" onClick={ closeModal }>❌ Cancel</button>
+                            <div className="form-group">
+                                <button type="submit" className="btn">💾 Save Event</button>
+                                <button type="button" className="btn" onClick={closeModal}>❌ Cancel</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
-        </div>
-    </div>
-)}
+            )}
+
+            {/* Delete Confirmation Dialog */}
+            <ConfirmDialog
+                open={state.showDeleteConfirm}
+                title="Delete this assignment?"
+                message={
+                    state.deleteTarget
+                        ? `Are you sure you want to delete "${state.deleteTarget.title}"?`
+                        : "Are you sure you want to delete this assignment?"
+                }
+                confirmText={state.deleteBusy ? "Deleting…" : "Delete"}
+                cancelText="Cancel"
+                busy={state.deleteBusy}
+                error={state.deleteError}
+                onConfirm={handleDeleteConfirmed}
+                onClose={() => {
+                    if (!state.deleteBusy) {
+                        closeDeleteConfirm();
+                    }
+                }}
+            />
         </div>
     );
 }
