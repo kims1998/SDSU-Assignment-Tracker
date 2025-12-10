@@ -389,105 +389,107 @@ function Dashboard() {
                 <p className="calendar-id">Calendar ID: 1</p>
             </header>
 
-            {/* Controls */}
-            <div className="controls">
-                <button className="btn" onClick={showCreateModal}>➕ Add New Event</button>
-                <button className="btn" onClick={fetchAssignments}>🔄 Refresh</button>
+            {/* Main 2-column layout */}
+            <div className="dashboard-main">
+                {/* Left side */}
+                <div className="dashboard-left">
+                    {/* Controls */}
+                    <div className="controls">
+                        <button className="btn" onClick={showCreateModal}>➕ Add New Event</button>
+                        <button className="btn" onClick={fetchAssignments}>🔄 Refresh</button>
 
-                <div className="filter-buttons">
-                    <strong>Filter by type:</strong>
-                    <button
-                        className={`filter-btn ${state.currentFilter === 'ALL' ? 'active' : ''}`}
-                        onClick={() => updateState({
-                            currentFilter: 'ALL'
-                        })}
-                    >
-                        All
-                    </button>
-                    <button
-                        className={`filter-btn ${state.currentFilter === 'ASSIGNMENT' ? 'active' : ''}`}
-                        onClick={() => updateState({
-                            currentFilter: 'ASSIGNMENT'
-                        })}
-                    >
-                        📚 Assignments
-                    </button>
-                    <button
-                        className={`filter-btn ${state.currentFilter === 'SCHOOL_CLASS' ? 'active' : ''}`}
-                        onClick={() => updateState({
-                            currentFilter: 'SCHOOL_CLASS'
-                        })}
-                    >
-                        🎓 Classes
-                    </button>
-                    <button
-                        className={`filter-btn ${state.currentFilter === 'SPECIAL_EVENT' ? 'active' : ''}`}
-                        onClick={() => updateState({
-                            currentFilter: 'SPECIAL_EVENT'
-                        })}
-                    >
-                        ⭐ Special Events
-                    </button>
-                </div>
-            </div>
-
-            {/* Error Message */}
-            {state.error && <div className="error-message">{state.error}</div>}
-
-            {/* Events Grid */}
-            <div className="events-grid">
-                {state.loading && <p>Loading assignments...</p>}
-
-                {!state.loading && state.filteredAssignments.length === 0 && (
-                    <div className="empty-state">
-                        <div className="empty-state-icon">📚</div>
-                        <h3>No events found</h3>
-                        <p>Click "Add New Event" to create your first event!</p>
-                    </div>
-                )}
-
-                {!state.loading && state.filteredAssignments.map(assignment => (
-                    <div key={assignment.id} className={`event-card ${getTypeClass(assignment.eventType)}`}>
-                        <div className="event-header">
-                            <div>
-                                <div className="event-title">
-                                    {assignment.title}
-                                </div>
-                                <span className={`event-type type-${getTypeClass(assignment.eventType)}`}>
-                                    {getTypeLabel(assignment.eventType)}
-                                </span>
-                            </div>
-                        </div>
-                        <div className="event-details">
-                            📅 {assignment.date} | ⏰ {formatTime(assignment.startDateTime)} - {formatTime(assignment.endDateTime)}
-                        </div>
-                        <div className="event-actions">
-                            <button className="btn btn-small" onClick={() => handleEdit(assignment)}>
-                                ✏️ Edit
+                        <div className="filter-buttons">
+                            <strong>Filter by type:</strong>
+                            <button
+                                className={`filter-btn ${state.currentFilter === 'ALL' ? 'active' : ''}`}
+                                onClick={() => updateState({ currentFilter: 'ALL' })}
+                            >
+                                All
                             </button>
                             <button
-                                className="btn btn-delete btn-small"
-                                onClick={() => askDelete(assignment)}
+                                className={`filter-btn ${state.currentFilter === 'ASSIGNMENT' ? 'active' : ''}`}
+                                onClick={() => updateState({ currentFilter: 'ASSIGNMENT' })}
                             >
-                                🗑️ Delete
+                                📚 Assignments
+                            </button>
+                            <button
+                                className={`filter-btn ${state.currentFilter === 'SCHOOL_CLASS' ? 'active' : ''}`}
+                                onClick={() => updateState({ currentFilter: 'SCHOOL_CLASS' })}
+                            >
+                                🎓 Classes
+                            </button>
+                            <button
+                                className={`filter-btn ${state.currentFilter === 'SPECIAL_EVENT' ? 'active' : ''}`}
+                                onClick={() => updateState({ currentFilter: 'SPECIAL_EVENT' })}
+                            >
+                                ⭐ Special Events
                             </button>
                         </div>
                     </div>
-                ))}
-            </div>
 
-            {/* Calendar View */}
-            <div className="calendar-container">
-                <div className="calendar-header">
-                    <h2>{calendar.title}</h2>
-                    <div className="calendar-nav">
-                        <button onClick={previousMonth}>← Prev</button>
-                        <button onClick={goToToday}>Today</button>
-                        <button onClick={nextMonth}>Next →</button>
+                    {/* Error Message */}
+                    {state.error && <div className="error-message">{state.error}</div>}
+
+                    {/* Events Panel */}
+                    <div className="events-panel">
+                        <div className="events-grid">
+                            {state.loading && <p>Loading assignments...</p>}
+
+                            {!state.loading && state.filteredAssignments.length === 0 && (
+                                <div className="empty-state">
+                                    <div className="empty-state-icon">📚</div>
+                                    <h3>No events found</h3>
+                                    <p>Click "Add New Event" to create your first event!</p>
+                                </div>
+                            )}
+
+                            {!state.loading && state.filteredAssignments.map(assignment => (
+                                <div key={assignment.id} className={`event-card ${getTypeClass(assignment.eventType)}`}>
+                                    <div className="event-header">
+                                        <div>
+                                            <div className="event-title">
+                                                {assignment.title}
+                                            </div>
+                                            <span className={`event-type type-${getTypeClass(assignment.eventType)}`}>
+                                            {getTypeLabel(assignment.eventType)}
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div className="event-details">
+                                        📅 {assignment.date} | ⏰ {formatTime(assignment.startDateTime)} - {formatTime(assignment.endDateTime)}
+                                    </div>
+                                    <div className="event-actions">
+                                        <button className="btn btn-small" onClick={() => handleEdit(assignment)}>
+                                            ✏️ Edit
+                                        </button>
+                                        <button
+                                            className="btn btn-delete btn-small"
+                                            onClick={() => askDelete(assignment)}
+                                        >
+                                            🗑️ Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <div className="calendar-grid">
-                    {calendar.days}
+
+                {/* Right side (Calendar) */}
+                <div className="dashboard-right">
+                    <div className="calendar-container">
+                        <div className="calendar-header">
+                            <h2>{calendar.title}</h2>
+                            <div className="calendar-nav">
+                                <button onClick={previousMonth}>← Prev</button>
+                                <button onClick={goToToday}>Today</button>
+                                <button onClick={nextMonth}>Next →</button>
+                            </div>
+                        </div>
+                        <div className="calendar-grid">
+                            {calendar.days}
+                        </div>
+                    </div>
                 </div>
             </div>
 
