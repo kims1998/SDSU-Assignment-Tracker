@@ -22,16 +22,14 @@ The Tracker assigns task based on priority allowing for certain work that is con
 To use this application, MySQL Workbench, MySQL version 8.0, Java 17, node.js, and Maven will need to be installed.
 Once installed, you must first run the Database through the Workbench. This allows for the data to be presentable to the backend and frontend once they start.
 
+
+This project was intended to be worked on **Intellij** as the IDE.
+
 **To run the BackEnd:**
 1) Ensure connection to the database is working and online.
-2) In the terminal (starting from the root directory) you can type:
-
+2) Ensure the Run/Debug configuration for the BackendApplication, under the Environmental Variables has the right credentials for your MySQL. 
 ```aiignore
-cd backend/src/main/java/
-```
-Then
-```
-
+Ex: MYSQLUSERNAME=[YOUR_OWN_USERNAME];MYSQLPASSWORD=[YOUR_OWN_PASSWORD]
 ```
 
 **To run the FrontEnd:**
