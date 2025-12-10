@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+input, select, .MuiTextField-root, .MuiInputBase-root {
+  width: 100% !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  box-sizing: border-box;
+}
