@@ -51,7 +51,7 @@ body {
     margin-top: 55px;
 }
 
-.input{ 
+.input{
     display: flex;
     align-items: center;
     margin: auto;
@@ -110,7 +110,7 @@ body {
     color: #fff;
     font-size: 20px;
     font-weight: 600;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 .gray{

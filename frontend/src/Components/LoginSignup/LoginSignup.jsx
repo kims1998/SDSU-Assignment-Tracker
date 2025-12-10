@@ -1,4 +1,4 @@
-import React, { useState } from 'react'  
+import React, { useState } from 'react'
 import './LoginSignup.css'
 
 import user_icon from '../Assets/person.png'
@@ -95,81 +95,65 @@ const LoginSignup = () => {
         goToDashboard();
     }
 
-  return (
-    <div className='container'>
-        <div className='header'>
-            <div className='text-sdsu'> <span role="img" aria-label="dog">📚</span>SDSU Assignment Tracker</div>
-            <div className='text'> { action } </div>
-            <div className='underline'></div>
-        </div>
+    return (
+        <div className='container'>
+            <div className='header'>
+                <div className='text-sdsu'> <span role="img" aria-label="dog">📚</span>SDSU Assignment Tracker</div>
+                <div className='text'> { action } </div>
+                <div className='underline'></div>
+            </div>
 
-        <div className='inputs'>
-            {action==="Login"?<div></div>:<div className='input'>
-                <img src={ user_icon } alt="" />
-                <input 
-                    type="text" 
-                    placeholder='Name'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>}
-            <div className='input'>
-                <img src={ email_icon } alt="" />
-                <input 
-                    type="email" 
-                    placeholder='Email ID'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+            <div className='inputs'>
+                {action==="Login"?<div></div>:<div className='input'>
+                    <img src={ user_icon } alt="" />
+                    <input
+                        type="text"
+                        placeholder='Name'
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>}
+                <div className='input'>
+                    <img src={ email_icon } alt="" />
+                    <input
+                        type="email"
+                        placeholder='Email ID'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className='input'>
+                    <img src={ password_icon } alt="" />
+                    <input
+                        type="password"
+                        placeholder='Password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                {action==="Sign Up"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click Here</span></div>}
             </div>
-            <div className='input'>
-                <img src={ password_icon } alt="" />
-                <input 
-                    type="password" 
-                    placeholder='Password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            {action==="Sign Up"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click Here</span></div>}
-        </div>
 
-        <div className="submit-container">
-            <div 
-                className={ action==="Login"?"submit gray": "submit" }
-                onClick={ action === "Sign Up" ? () => handleSubmit() : () => setAction("Sign Up") }  // Sign Up sends data
-            >
-                Sign Up
+            <div className="submit-container">
+                <div
+                    className={ action==="Login"?"submit gray": "submit" }
+                    onClick={ action === "Sign Up" ? () => handleSubmit() : () => setAction("Sign Up") }  // Sign Up sends data
+                >
+                    Sign Up
+                </div>
+                {/* Login Button: Call handleSubmit if active, or switches view if inactive */}
+                <div
+                    className={ action==="Sign Up"?"submit gray":"submit" }
+                    onClick={ action === "Login" ? () => handleSubmit() : () => setAction("Login") }  // Switch to login view
+                >
+                    Login
+                </div>
             </div>
-            {/* Login Button: Call handleSubmit if active, or switches view if inactive */}
-            <div 
-                className={ action==="Sign Up"?"submit gray":"submit" } 
-                onClick={ action === "Login" ? () => handleSubmit() : () => setAction("Login") }  // Switch to login view
-            >
-                Login
-            </div>
-        </div>
 
-        {/* Dashboard navigation button */}
-        <div style={ {marginTop: '20px', textAlign: 'center'} }>
-            <button 
-                // onClick={ goToDashboard }
-                onClick={ setDummyToken }
-                style={{
-                    padding: '10px 20px',
-                    backgroundColor: '#d41736',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '16px'
-                }}
-            >
-                Go to Dashboard (Using Dummy Token)
-            </button>
+            {/* Dashboard navigation button */}
+
         </div>
-    </div>
-  );
+    );
 }
 
 export default LoginSignup;

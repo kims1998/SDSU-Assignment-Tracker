@@ -48,6 +48,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.activeStatus = true;
     }
 
     // getters (some getters aren't here due to lombok's @Getter)
