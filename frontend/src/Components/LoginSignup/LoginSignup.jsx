@@ -151,23 +151,7 @@ const LoginSignup = () => {
             </div>
 
             {/* Dashboard navigation button */}
-            <div style={ {marginTop: '20px', textAlign: 'center'} }>
-                <button
-                    // onClick={ goToDashboard }
-                    onClick={ setDummyToken }
-                    style={{
-                        padding: '10px 20px',
-                        backgroundColor: '#d41736',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        fontSize: '16px'
-                    }}
-                >
-                    Go to Dashboard (Using Dummy Token)
-                </button>
-            </div>
+
         </div>
     );
 }
