@@ -490,6 +490,7 @@
 @media (max-width: 900px) {
     .dashboard-main {
         flex-direction: column;
+        align-items: center;
     }
 
     .dashboard-right {
