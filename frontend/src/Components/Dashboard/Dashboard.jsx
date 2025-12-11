@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Dashboard.css';
+import Logout from './Logout';
 import {
     createAssignment,
     getAllAssignments,
@@ -384,6 +385,7 @@ function Dashboard() {
     return (
         <div className="dashboard-container">
             {/* Header */}
+            <Logout />
             <header className="dashboard-header-new">
                 <h1>🎓 SDSU Assignment Tracker</h1>
                 <p className="calendar-id">Calendar ID: 1</p>
