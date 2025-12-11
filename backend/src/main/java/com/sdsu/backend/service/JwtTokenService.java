@@ -15,7 +15,6 @@ import java.util.Map;
 
 @Service
 public class JwtTokenService {
-
     // IMPORTANT: Replace with a secure, long, secret key in application.properties
     @Value("${jwt.secret:defaultSecretKeyForDevelopment}")
     private String SECRET;
@@ -52,8 +51,6 @@ public class JwtTokenService {
             Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);
             return true;
         } catch (JwtException e) {
-
-            // == TO DO == add logger or smt
             return false;
         }
     }

@@ -27,14 +27,14 @@ export default function ConfirmDialog(
             if (e.target === e.currentTarget && !busy) onClose();
         }}>
             <div className="cd-card" role="dialog" aria-modal="true" aria-labelledby="cd-title">
-                <h3 id="cd-title" className="cd-title">{title}</h3>
-                <p className="cd-body">{message}</p>
-                {error && <p className="cd-error" role="alert">{error}</p>}
+                <h3 id="cd-title" className="cd-title">{ title }</h3>
+                <p className="cd-body">{ message }</p>
+                {error && <p className="cd-error" role="alert">{ error }</p>}
                 <div className="cd-actions">
-                    <button className="btn btn-secondary" onClick={onClose} disabled={busy}>
+                    <button className="btn btn-secondary" onClick={ onClose } disabled={ busy }>
                         {cancelText}
                     </button>
-                    <button className="btn btn-danger" onClick={onConfirm} disabled={busy}>
+                    <button className="btn btn-danger" onClick={ onConfirm } disabled={ busy }>
                         {busy ? "Deleting…" : confirmText}
                     </button>
                 </div>

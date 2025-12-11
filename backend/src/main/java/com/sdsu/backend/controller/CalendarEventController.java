@@ -62,7 +62,7 @@ public class CalendarEventController {
             case "SCHOOL_CLASS" -> event = new SchoolClass();
             case "SPECIAL_EVENT" -> event = new SpecialEvent();
             case "ASSIGNMENT" -> event = new Assignment();
-            default -> throw new IllegalArgumentException("Unknown event tpye: " + eventType);
+            default -> throw new IllegalArgumentException("Unknown event type: " + eventType);
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
@@ -97,7 +97,6 @@ public class CalendarEventController {
             List<CalendarEvent> events;
 
             if (date != null) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDateTime start = LocalDateTime.parse(date + "T00:00");
                 LocalDateTime end = LocalDateTime.parse(date + "T23:59");
 

@@ -51,9 +51,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 user.getEmail()
         );
     }
+
     @Override
     public User getAuthenticatedUser(String token) {
-
         // 1. Validate the token and extract the User ID
         // The token must be non-null and valid
         if (token != null && tokenService.validateToken(token)) {
@@ -71,5 +71,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         // If the token is null, or expired
         return null;
     }
-
 }

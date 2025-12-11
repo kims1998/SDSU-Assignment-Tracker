@@ -1,12 +1,9 @@
-
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Logout.css';
 
 const Logout = () => {
     const navigate = useNavigate();
-
     const handleLogout = () => {
         localStorage.removeItem('userToken');
         localStorage.removeItem('userId');
@@ -17,7 +14,7 @@ const Logout = () => {
 
     return (
         <div className="logout-container">
-            <button className="logout-button" onClick={handleLogout}>
+            <button className="logout-button" onClick={ handleLogout }>
                 Log Out
             </button>
         </div>

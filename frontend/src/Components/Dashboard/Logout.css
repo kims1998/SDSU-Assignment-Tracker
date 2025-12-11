@@ -2,9 +2,9 @@
 
 /*Logout Button*/
 .logout-container {
-    position: fixed;
-    top: 20px;
-    right: 30px;
+    position: absolute;
+    top: 55px;
+    right: 55px;
     z-index: 1000
 }
 

@@ -10,7 +10,7 @@ import { loginChecks } from '../../services/loginService';
 
 const LoginSignup = () => {
 
-    const [action, setAction] = useState("Sign Up");
+    const [action, setAction] = useState("Login");
     const navigate = useNavigate();
 
     // Input states
@@ -87,12 +87,6 @@ const LoginSignup = () => {
         } else {
             handleLogin();
         }
-    }
-
-    const setDummyToken = () => {
-        console.log("Skipping login, setting dummy token");
-        localStorage.setItem('userToken', 'eyJhbGciOiJIUzUxMiJ9.eyJpZCI6MywiZW1haWwiOiJ0ZXN0QDAuZWR1IiwiZXhwIjoxNzY1NTc5NDMyfQ.Tj_R5e8NJRoxAH1hr9Fau8Ip9dWORsy3BgfSPnp2_m4be3TeJWK69umQ');
-        goToDashboard();
     }
 
     return (

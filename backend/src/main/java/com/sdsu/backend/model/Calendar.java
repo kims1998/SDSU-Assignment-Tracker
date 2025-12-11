@@ -1,60 +1,41 @@
 package com.sdsu.backend.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Set;
 import java.util.HashSet;
 
 @Entity
 public class Calendar {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // once user class is finished do the following:
-    //@OneToOne
-    //@JoinColumn(name = "user_id")
-    // private User user;
+
+    @Getter @Setter
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-
+    @Getter
     @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<CalendarEvent> calendarEvents = new HashSet<>();
     private boolean isShareable;
 
-    public Calendar (){}
-
-    //CODE FOR AFTER USER HERE vvv
-    //public Calendar (User user){
-    // create blank calendarEvents
-    // set isSharable to false
-    // Id is covered by @Id
-    //}
+    public Calendar (){
+        //Default constructor required by JPA
+    }
 
     public Calendar (User user) {
         this.user = user;
         this.isShareable = false;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Set<CalendarEvent> getCalendarEvents() {
-        return calendarEvents;
-    }
-
     public boolean getIsSharable (){
         return isShareable;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public void setIsSharable(boolean share){
@@ -65,5 +46,4 @@ public class Calendar {
         this.getCalendarEvents().add(cEvent);
         cEvent.setCalendar(this);
     }
-
 }

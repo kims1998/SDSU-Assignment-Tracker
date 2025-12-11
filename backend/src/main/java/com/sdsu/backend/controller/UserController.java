@@ -32,25 +32,11 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody CreateUserRequest request) {
         try {
-
-            /*
-            User user = new User();
-
-            user.setEmail(request.getEmail());
-            user.setPassword(request.getPassword());
-            user.setUsername(request.getName());
-            user.setActiveStatusTrue();
-
-             */
-
-
-
             User saved = userService.createUser(
                     request.getEmail(),
                     request.getPassword(),
                     request.getName()
             );
-
             return ResponseEntity.status(HttpStatus.CREATED).body(saved);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -71,8 +57,6 @@ public class UserController {
     }
 
     // ===== READ ONE =====
-
-    // Read Through ID
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
@@ -89,8 +73,6 @@ public class UserController {
         return user.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    // Read Through Password
 
     @GetMapping("/password/{password}")
     public ResponseEntity<User> getUserByPassword(@PathVariable String password) {
@@ -110,8 +92,6 @@ public class UserController {
     }
 
     // ===== UPDATE =====
-
-    // Update a User via ID
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id,
                                            @RequestBody UpdateUserRequest request) {
@@ -124,9 +104,7 @@ public class UserController {
 
             User user = userOpt.get();
 
-            // This is all based on the calandarEventController.java
-
-
+            // This is all based on the CalendarEventController.java
             if (request.isActiveStatus()) {
                 user.setActiveStatus(request.isActiveStatus());
             }
@@ -137,9 +115,7 @@ public class UserController {
                     request.getPassword(),
                     request.getName()
             );
-
             return ResponseEntity.ok(updatedUser);
-
         } catch (RuntimeException e) {
             // Specifically catch the "User not found" exception from the service
             if (e.getMessage().contains("User not found")) {
@@ -167,7 +143,7 @@ public class UserController {
             User user = userOpt.get();
             Long id = user.getId();
 
-            // This is all based on the calandarEventController.java
+            // This is all based on the CalendarEventController.java
             User updatedUser = userService.updateUser(
                     id,
                     request.getEmail(),
@@ -178,9 +154,7 @@ public class UserController {
             if (request.isActiveStatus()) {
                 user.setActiveStatus(request.isActiveStatus());
             }
-
             return ResponseEntity.ok(updatedUser);
-
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage(), e);
             return ResponseEntity.badRequest().build();

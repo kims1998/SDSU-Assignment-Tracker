@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Dashboard.css';
 import Logout from './Logout';
+import ConfirmDialog from "./ConfirmDialog";
 import {
     createAssignment,
     getAllAssignments,
     updateAssignment,
     deleteAssignment
 } from '../../services/calendarEventService';
-
-import ConfirmDialog from "./ConfirmDialog";
 
 function Dashboard() {
     //setState is not used, instead use updateState (But don't delete setState)
@@ -52,7 +51,7 @@ function Dashboard() {
             const assignmentsWithEpoch = data.map(a => ({
                 ...a,
                 eventType: a.eventType,
-                epochDate: Math.floor(new Date(a.date).getTime() / 86400000),
+                epochDate: Math.floor(new Date(a.startDateTime).getTime() / 86400000),
                 epochStart: new Date(a.startDateTime).getTime(),
                 epochEnd: new Date(a.endDateTime).getTime()
             }));
@@ -167,19 +166,6 @@ function Dashboard() {
             showModal: true
         });
     };
-
-    // Old simple delete (now replaced by confirm dialog)
-    // const handleDelete = async (id) => {
-    //     if (window.confirm('Are you sure you want to delete this assignment?')) {
-    //         try {
-    //             await deleteAssignment(id);
-    //             await fetchAssignments();
-    //         } catch (err) {
-    //             updateState ({ error: 'Failed to delete assignment!' });
-    //             console.error(err);
-    //         }
-    //     }
-    // };
 
     // When user clicks the trash can button
     const askDelete = (assignment) => {
@@ -385,9 +371,9 @@ function Dashboard() {
     return (
         <div className="dashboard-container">
             {/* Header */}
-            <Logout />
             <header className="dashboard-header-new">
                 <h1>🎓 SDSU Assignment Tracker</h1>
+                <Logout />
                 <p className="calendar-id">Calendar ID: 1</p>
             </header>
 
@@ -397,8 +383,8 @@ function Dashboard() {
                 <div className="dashboard-left">
                     {/* Controls */}
                     <div className="controls">
-                        <button className="btn" onClick={showCreateModal}>➕ Add New Event</button>
-                        <button className="btn" onClick={fetchAssignments}>🔄 Refresh</button>
+                        <button className="btn" onClick={ showCreateModal }>➕ Add New Event</button>
+                        <button className="btn" onClick={ fetchAssignments }>🔄 Refresh</button>
 
                         <div className="filter-buttons">
                             <strong>Filter by type:</strong>
@@ -483,9 +469,9 @@ function Dashboard() {
                         <div className="calendar-header">
                             <h2>{calendar.title}</h2>
                             <div className="calendar-nav">
-                                <button onClick={previousMonth}>← Prev</button>
-                                <button onClick={goToToday}>Today</button>
-                                <button onClick={nextMonth}>Next →</button>
+                                <button onClick={ previousMonth }>← Prev</button>
+                                <button onClick={ goToToday }>Today</button>
+                                <button onClick={ nextMonth }>Next →</button>
                             </div>
                         </div>
                         <div className="calendar-grid">
@@ -500,14 +486,14 @@ function Dashboard() {
                 <div className="modal active">
                     <div className="modal-content">
                         <h2>{state.editingId ? 'Edit Event' : 'Create New Event'}</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={ handleSubmit }>
                             {/* EVENT TYPE SELECTOR */}
                             <div className="form-group">
                                 <label>Event Type *</label>
                                 <select
                                     name="eventType"
                                     value={state.formData.eventType}
-                                    onChange={handleInputChange}
+                                    onChange={ handleInputChange }
                                     required
                                 >
                                     <option value="ASSIGNMENT">📚 Assignment</option>
@@ -522,7 +508,7 @@ function Dashboard() {
                                     type="text"
                                     name="title"
                                     value={state.formData.title}
-                                    onChange={handleInputChange}
+                                    onChange={ handleInputChange }
                                     placeholder="CS250 Final Project"
                                     required
                                 />
@@ -534,7 +520,7 @@ function Dashboard() {
                                     type="date"
                                     name="date"
                                     value={state.formData.date}
-                                    onChange={handleInputChange}
+                                    onChange={ handleInputChange }
                                     required
                                 />
                             </div>
@@ -545,7 +531,7 @@ function Dashboard() {
                                     type="time"
                                     name="startTime"
                                     value={state.formData.startTime}
-                                    onChange={handleInputChange}
+                                    onChange={ handleInputChange }
                                     min="00:00"
                                     max="23:59"
                                     step="60"
@@ -559,14 +545,14 @@ function Dashboard() {
                                     type="time"
                                     name="endTime"
                                     value={state.formData.endTime}
-                                    onChange={handleInputChange}
+                                    onChange={ handleInputChange }
                                     required
                                 />
                             </div>
 
                             <div className="form-group">
                                 <button type="submit" className="btn">💾 Save Event</button>
-                                <button type="button" className="btn" onClick={closeModal}>❌ Cancel</button>
+                                <button type="button" className="btn" onClick={ closeModal }>❌ Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -586,7 +572,7 @@ function Dashboard() {
                 cancelText="Cancel"
                 busy={state.deleteBusy}
                 error={state.deleteError}
-                onConfirm={handleDeleteConfirmed}
+                onConfirm={ handleDeleteConfirmed }
                 onClose={() => {
                     if (!state.deleteBusy) {
                         closeDeleteConfirm();

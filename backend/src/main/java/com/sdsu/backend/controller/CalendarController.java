@@ -26,7 +26,6 @@ public class CalendarController {
         try {
             Calendar calendar = new Calendar();
             calendar.setIsSharable(request.isShareable());
-
             Calendar saved = calendarService.save(calendar);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(saved);
@@ -57,4 +56,4 @@ public class CalendarController {
             return ResponseEntity.badRequest().build();
         }
     }
-} // END OF CalendarController
+}

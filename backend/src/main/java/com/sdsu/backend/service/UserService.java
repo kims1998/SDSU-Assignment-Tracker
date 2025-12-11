@@ -1,9 +1,7 @@
 package com.sdsu.backend.service;
 
 import com.sdsu.backend.model.User;
-// import com.sdsu.backend.model.UserSettings;
 import com.sdsu.backend.repository.UserRepository;
-// import com.sdsu.backend.repository.UserSettingsRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,10 +11,8 @@ import java.util.*;
 
 @Service
 public class UserService {
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;

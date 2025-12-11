@@ -19,18 +19,14 @@ public class AuthController {
         this.authenticationService = authenticationService;
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
-
             LoginResponse response = authenticationService.authenticateAndGetToken(
                     request.getEmail(),
                     request.getPassword()
             );
-
             return ResponseEntity.ok(response);
-
         } catch (BadCredentialsException e) {
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)

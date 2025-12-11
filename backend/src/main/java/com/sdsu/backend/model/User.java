@@ -29,14 +29,6 @@ public class User {
     private boolean activeStatus = false;
     private boolean darkMode = false;
 
-    // VVV ||CALENDAR 1-1 || VVV
-
-    // @OneToOne(mappedBy = "calendar")
-    // private Calendar calendar;
-
-    // @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    // private UserSettings userSettings;
-
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Calendar calendar;
 

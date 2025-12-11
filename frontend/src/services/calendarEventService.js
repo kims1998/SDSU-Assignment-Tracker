@@ -17,7 +17,6 @@ const getAuthHeaders = () => {
 
 // ===== CREATE - Add new assignment =====
  export const createAssignment = async (assignmentData) => {
-     console.log("Payload for creating assignment:", assignmentData);
      try {
          const body = {
              calendarId: 1,
@@ -121,7 +120,6 @@ export const updateAssignment = async (id, assignmentData) => {
 
             priority: assignmentData.priority
         };
-        console.log("📤 Updating:", body);
 
         const response = await fetch(`${API_BASE_URL}/calendar-events/${id}`, {
             method: 'PUT',

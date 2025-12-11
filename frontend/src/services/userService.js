@@ -19,7 +19,6 @@ export const createUser = async (userData) => {
         if (!response.ok) {
             throw new Error('Failed to create user');
         }
-
         return await response.json();
     } catch (error) {
         console.error('Error creating assignment:', error);
@@ -28,8 +27,6 @@ export const createUser = async (userData) => {
 };
 
 // ===== READ - Get User's email/password/username =====
-
-// Get All the Users
 export const getAllActiveUsers = async () => {
     try {
         const response = await fetch(
@@ -39,13 +36,12 @@ export const getAllActiveUsers = async () => {
         if (!response.ok) {
             throw new Error('Failed to fetch all Active Users');
         }
-
         return await response.json();
     } catch (error) {
         console.error('Error fetching Active Users:', error);
         throw error;
     }
-}
+};
 
 // Get User via Email
 export const getUserByEmail = async (email) => {
@@ -57,13 +53,12 @@ export const getUserByEmail = async (email) => {
         if (!response.ok) {
             throw new Error('Failed to fetch a User with this EMAIL');
         }
-
         return await response.json();
     } catch (error) {
         console.error('Error fetching User via this EMAIL', error);
         throw error;
     }
-}
+};
 
 // Get User via Password
 export const getUserByPassword = async (password) => {
@@ -75,12 +70,11 @@ export const getUserByPassword = async (password) => {
         if (!response.ok) {
             throw new Error('Failed to fetch a User with this PASSWORD');
         }
-
         return await response.json();
     } catch (error) {
-        console.error('Error fetching User via this PASSWORD', error)
+        console.error('Error fetching User via this PASSWORD', error);
     }
-}
+};
 
 // Get User via Name
 export const getUserByName = async (name) => {
@@ -92,12 +86,11 @@ export const getUserByName = async (name) => {
         if (!response.ok) {
             throw new Error('Failed to fetch a User with this NAME');
         }
-
         return await response.json();
     } catch (error) {
         console.error('Error fetching User via this NAME', error)
     }
-}
+};
 
 
 // ===== UPDATE - Edit User's information =====
@@ -119,17 +112,14 @@ export const updateUser = async (email, userData) => {
         if (!response.ok) {
             throw new Error('Failed to update this user');
         }
-
         return await response.json();
     } catch (error) {
         console.error('Error updating USER', error);
         throw error;
     }
-}
+};
 
 // ===== DELETE - Remove A User =====
-
-// Delete a User via Email
 export const deleteUser = async (email) => {
     try {
         const response = await fetch(`${API_BASE_URL}/users/email/${email}`, {
@@ -139,14 +129,9 @@ export const deleteUser = async (email) => {
         if (!response.ok) {
             throw new Error('Failed to delete User')
         }
-
         return true;
     } catch (error) {
         console.error('Error deleting User', error);
         throw error;
     }
-}
-
-
-
-
+};
