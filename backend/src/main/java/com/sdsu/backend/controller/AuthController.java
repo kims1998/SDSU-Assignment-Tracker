@@ -3,6 +3,7 @@ package com.sdsu.backend.controller;
 import com.sdsu.backend.dto.LoginRequest;
 import com.sdsu.backend.dto.LoginResponse;
 import com.sdsu.backend.service.AuthenticationService;
+import jakarta.validation.Valid; //for validation
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,7 +21,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
         try {
             LoginResponse response = authenticationService.authenticateAndGetToken(
                     request.getEmail(),

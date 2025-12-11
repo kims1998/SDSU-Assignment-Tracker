@@ -30,7 +30,7 @@ public class UserController {
 
     // ===== CREATE USER =====
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody CreateUserRequest request) {
+    public ResponseEntity<User> createUser(@jakarta.validation.Valid @RequestBody CreateUserRequest request) {
         try {
             User saved = userService.createUser(
                     request.getEmail(),
