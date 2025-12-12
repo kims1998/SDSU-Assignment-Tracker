@@ -2,8 +2,7 @@ package com.sdsu.backend.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Getter @Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

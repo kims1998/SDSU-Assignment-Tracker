@@ -48,13 +48,26 @@ function Dashboard() {
         });
         try {
             const data = await getAllAssignments();
-            const assignmentsWithEpoch = data.map(a => ({
-                ...a,
-                eventType: a.eventType,
-                epochDate: Math.floor(new Date(a.startDateTime).getTime() / 86400000),
-                epochStart: new Date(a.startDateTime).getTime(),
-                epochEnd: new Date(a.endDateTime).getTime()
-            }));
+
+            const assignmentsWithEpoch = data.map(a => {
+                const start = new Date(a.startDateTime);
+                const end = new Date(a.endDateTime);
+
+                const localMidnight = new Date(
+                    start.getFullYear(),
+                    start.getMonth(),
+                    start.getDate()
+                );
+                const epochLocalDate = Math.floor(localMidnight.getTime() / 86400000);
+
+                return {
+                    ...a,
+                    eventType: a.eventType,
+                    epochDate: epochLocalDate,
+                    epochStart: start.getTime(),
+                    epochEnd: end.getTime()
+                };
+            });
             updateState({ assignments: assignmentsWithEpoch });
         } catch (err) {
             updateState({ error: 'Failed to load assignments. Make sure backend is running!' });
@@ -372,8 +385,10 @@ function Dashboard() {
         <div className="dashboard-container">
             {/* Header */}
             <header className="dashboard-header-new">
-                <h1>🎓 SDSU Assignment Tracker</h1>
-                <Logout />
+                <div className="header-row">
+                    <h1>🎓 SDSU Assignment Tracker</h1>
+                    <Logout />
+                </div>
                 <p className="calendar-id">Calendar ID: 1</p>
             </header>
 
@@ -383,35 +398,39 @@ function Dashboard() {
                 <div className="dashboard-left">
                     {/* Controls */}
                     <div className="controls">
-                        <button className="btn" onClick={ showCreateModal }>➕ Add New Event</button>
-                        <button className="btn" onClick={ fetchAssignments }>🔄 Refresh</button>
+                        <div className="controls-btn-rows">
+                            <button className="btn btn-small" onClick={ showCreateModal }>➕ Add Event</button>
+                            <button className="btn btn-small" onClick={ fetchAssignments }>🔄 Refresh</button>
+                        </div>
 
-                        <div className="filter-buttons">
-                            <strong>Filter by type:</strong>
-                            <button
-                                className={`filter-btn ${state.currentFilter === 'ALL' ? 'active' : ''}`}
-                                onClick={() => updateState({ currentFilter: 'ALL' })}
-                            >
-                                All
-                            </button>
-                            <button
-                                className={`filter-btn ${state.currentFilter === 'ASSIGNMENT' ? 'active' : ''}`}
-                                onClick={() => updateState({ currentFilter: 'ASSIGNMENT' })}
-                            >
-                                📚 Assignments
-                            </button>
-                            <button
-                                className={`filter-btn ${state.currentFilter === 'SCHOOL_CLASS' ? 'active' : ''}`}
-                                onClick={() => updateState({ currentFilter: 'SCHOOL_CLASS' })}
-                            >
-                                🎓 Classes
-                            </button>
-                            <button
-                                className={`filter-btn ${state.currentFilter === 'SPECIAL_EVENT' ? 'active' : ''}`}
-                                onClick={() => updateState({ currentFilter: 'SPECIAL_EVENT' })}
-                            >
-                                ⭐ Special Events
-                            </button>
+                        <div className="filter-section">
+                            <div className="filter-title">Filter by type:</div>
+                            <div className="filter-buttons">
+                                <button
+                                    className={`filter-btn ${state.currentFilter === 'ALL' ? 'active' : ''}`}
+                                    onClick={() => updateState({ currentFilter: 'ALL' })}
+                                >
+                                    All
+                                </button>
+                                <button
+                                    className={`filter-btn ${state.currentFilter === 'ASSIGNMENT' ? 'active' : ''}`}
+                                    onClick={() => updateState({ currentFilter: 'ASSIGNMENT' })}
+                                >
+                                    📚 Assignments
+                                </button>
+                                <button
+                                    className={`filter-btn ${state.currentFilter === 'SCHOOL_CLASS' ? 'active' : ''}`}
+                                    onClick={() => updateState({ currentFilter: 'SCHOOL_CLASS' })}
+                                >
+                                    🎓 Classes
+                                </button>
+                                <button
+                                    className={`filter-btn ${state.currentFilter === 'SPECIAL_EVENT' ? 'active' : ''}`}
+                                    onClick={() => updateState({ currentFilter: 'SPECIAL_EVENT' })}
+                                >
+                                    ⭐ Special Events
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -444,7 +463,8 @@ function Dashboard() {
                                         </div>
                                     </div>
                                     <div className="event-details">
-                                        📅 {assignment.date} | ⏰ {formatTime(assignment.startDateTime)} - {formatTime(assignment.endDateTime)}
+                                        📅 {new Date(assignment.startDateTime).toLocaleDateString()} |
+                                        ⏰ {formatTime(assignment.startDateTime)} - {formatTime(assignment.endDateTime)}
                                     </div>
                                     <div className="event-actions">
                                         <button className="btn btn-small" onClick={() => handleEdit(assignment)}>

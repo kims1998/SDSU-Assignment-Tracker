@@ -1,0 +1,168 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"6ede3b59-a98d-40c9-9021-bbd3052ed95f\" name=\"Changes\" comment=\"Logout Button\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/package-lock.json\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/AuthController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/AuthController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/GlobalExceptionHandler.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/UserController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/UserController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/Calendar.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/Calendar.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/User.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/User.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/security/.gitkeep\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/AuthenticationService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/AuthenticationService.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/AuthenticationServiceImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/AuthenticationServiceImpl.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/JwtTokenService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/JwtTokenService.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/UserService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/UserService.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/Components/Dashboard/ConfirmDialog.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/Components/Dashboard/ConfirmDialog.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.css\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/index.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/index.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/services/calendarEventService.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/services/calendarEventService.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/services/loginService.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/services/loginService.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/src/services/userService.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/src/services/userService.js\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"TypeScript File\" />\n        <option value=\"JavaScript File\" />\n        <option value=\"JSX File\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;history&quot;: [\n    {\n      &quot;state&quot;: &quot;OPEN&quot;\n    }\n  ],\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;\n  }\n}</component>\n  <component name=\"GitHubPullRequestState\">{\n  &quot;prStates&quot;: [\n    {\n      &quot;id&quot;: {\n        &quot;id&quot;: &quot;PR_kwDOQIxB_c6z-nFF&quot;,\n        &quot;number&quot;: 30\n      },\n      &quot;lastSeen&quot;: 1763429997231\n    },\n    {\n      &quot;id&quot;: {\n        &quot;id&quot;: &quot;PR_kwDOQIxB_c6z-a34&quot;,\n        &quot;number&quot;: 29\n      },\n      &quot;lastSeen&quot;: 1763429997288\n    }\n  ]\n}</component>\n  <component name=\"GithubProjectSettings\">\n    <option name=\"branchProtectionPatterns\">\n      <list>\n        <option value=\"main\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;git@github.com:/kims1998/SDSU-Assignment-Tracker.git&quot;,\n    &quot;accountId&quot;: &quot;f14fbb6b-6fe6-40d3-a006-0153b4967161&quot;\n  }\n}</component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\n  <component name=\"ProjectId\" id=\"35PNja5C5XUHgq0k0Sy1fX1KGwy\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RequestMappingsPanelOrder0\": \"0\",\n    \"RequestMappingsPanelOrder1\": \"1\",\n    \"RequestMappingsPanelWidth0\": \"75\",\n    \"RequestMappingsPanelWidth1\": \"75\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"Spring Boot.BackendApplication.executor\": \"Run\",\n    \"com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1\": \"true\",\n    \"git-widget-placeholder\": \"Charles\",\n    \"junie.onboarding.icon.badge.shown\": \"true\",\n    \"last_opened_file_path\": \"/Users/marie-school/IdeaProjects/SDSU-Assignment-Tracker/frontend/src/Components/Dashboard\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"npm.start.executor\": \"Run\",\n    \"project.structure.last.edited\": \"Modules\",\n    \"project.structure.proportion\": \"0.15\",\n    \"project.structure.side.proportion\": \"0.2\",\n    \"settings.editor.selected.configurable\": \"preferences.lookFeel\",\n    \"to.speed.mode.migration.done\": \"true\",\n    \"ts.external.directory.path\": \"/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  },\n  \"keyToStringList\": {\n    \"DatabaseDriversLRU\": [\n      \"mysql\"\n    ]\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/frontend/src/Components/Dashboard\" />\n      <recent name=\"$PROJECT_DIR$/frontend/src/Components/Logout\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"BackendApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"corretto-17\" />\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\n      <envs>\n        <env name=\"MYSQLPASSWORD\" value=\"rootadmin\" />\n        <env name=\"MYSQLUSERNAME\" value=\"root\" />\n      </envs>\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\n      <module name=\"backend\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.sdsu.backend.BackendApplication\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103\" />\n        <option value=\"bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"6ede3b59-a98d-40c9-9021-bbd3052ed95f\" name=\"Changes\" comment=\"\" />\n      <created>1763007883545</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1763007883545</updated>\n      <workItem from=\"1763007884592\" duration=\"1741000\" />\n      <workItem from=\"1763010258194\" duration=\"843000\" />\n      <workItem from=\"1763011109575\" duration=\"977000\" />\n      <workItem from=\"1763012092300\" duration=\"1648000\" />\n      <workItem from=\"1763418405309\" duration=\"2150000\" />\n      <workItem from=\"1763420740526\" duration=\"6102000\" />\n      <workItem from=\"1763427355101\" duration=\"908000\" />\n      <workItem from=\"1763429033293\" duration=\"1513000\" />\n      <workItem from=\"1763592141549\" duration=\"29664000\" />\n      <workItem from=\"1764822011207\" duration=\"8236000\" />\n      <workItem from=\"1765406244349\" duration=\"2978000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"&quot;Committing to ensure current branch is proper&quot;\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763011322531</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763011322532</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"&quot;Removing from local branch to see if it fixes merge freezing&quot;\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763428610027</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763428610027</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\".idea related commit\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1764822115414</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1764822115414</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Logout Button\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1765237378876</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1765237378876</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"&quot;Committing to ensure current branch is proper&quot;\" />\n    <MESSAGE value=\"&quot;Reincluding controller folder and it's files included from previous commits&quot;\" />\n    <MESSAGE value=\"&quot;Removing from local branch to see if it fixes merge freezing&quot;\" />\n    <MESSAGE value=\".idea related commit\" />\n    <MESSAGE value=\"Logout Button\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Logout Button\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 1be3b149292ba449f9202ddbe668ff20476440e9)
++++ b/.idea/workspace.xml	(date 1765415741749)
+@@ -5,30 +5,17 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="6ede3b59-a98d-40c9-9021-bbd3052ed95f" name="Changes" comment="Logout Button">
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/BackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/BackendApplication.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/AuthController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/CalendarEventController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/GlobalExceptionHandler.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/GlobalExceptionHandler.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/controller/UserController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/Calendar.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/model/User.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/security/.gitkeep" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/AuthenticationService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/AuthenticationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/AuthenticationServiceImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/JwtTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/JwtTokenService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/service/UserService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/ConfirmDialog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/ConfirmDialog.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateUserRequest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/LoginRequest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.css" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/src/services/calendarEventService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/calendarEventService.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/src/services/loginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/loginService.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/userService.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -120,8 +107,9 @@
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "Spring Boot.BackendApplication.executor": "Run",
+     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+-    "git-widget-placeholder": "Charles",
++    "git-widget-placeholder": "Nico3",
+     "junie.onboarding.icon.badge.shown": "true",
++    "kotlin-language-version-configured": "true",
+     "last_opened_file_path": "/Users/marie-school/IdeaProjects/SDSU-Assignment-Tracker/frontend/src/Components/Dashboard",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+@@ -154,8 +142,8 @@
+       <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
+       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+       <envs>
+-        <env name="MYSQLPASSWORD" value="rootadmin" />
+         <env name="MYSQLUSERNAME" value="root" />
++        <env name="MYSQLPASSWORD" value="" />
+       </envs>
+       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+       <module name="backend" />
+@@ -168,8 +156,8 @@
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
++        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
++        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -190,7 +178,7 @@
+       <workItem from="1763429033293" duration="1513000" />
+       <workItem from="1763592141549" duration="29664000" />
+       <workItem from="1764822011207" duration="8236000" />
+-      <workItem from="1765406244349" duration="2978000" />
++      <workItem from="1765409701913" duration="4172000" />
+     </task>
+     <task id="LOCAL-00001" summary="&quot;Committing to ensure current branch is proper&quot;">
+       <option name="closed" value="true" />
+@@ -249,4 +237,15 @@
+     <MESSAGE value="Logout Button" />
+     <option name="LAST_COMMIT_MESSAGE" value="Logout Button" />
+   </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/BackendApplication.java</url>
++          <line>6</line>
++          <option name="timeStamp" value="1" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++  </component>
+ </project>
+\ No newline at end of file
+Index: backend/src/main/java/com/sdsu/backend/dto/LoginResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sdsu.backend.dto;\n\nimport com.sdsu.backend.model.User;\n\npublic class LoginResponse {\n\n    private String token;\n    private Long userId;\n    private String email;\n\n    public LoginResponse() {}\n\n    public LoginResponse(String token, Long userId, String email) {\n        this.token = token;\n        this.userId = userId;\n        this.email = email;\n    }\n\n    // Getters\n    public String getToken() {\n        return token;\n    }\n    public Long getUserId() {\n        return userId;\n    }\n    public String getEmail() {\n        return email;\n    }\n\n    // Setters\n\n    public void setToken() {\n        this.token = token;\n    }\n    public void setUserId() {\n        this.userId = userId;\n    }\n    public void setEmail() {\n        this.email = email;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/src/main/java/com/sdsu/backend/dto/LoginResponse.java b/backend/src/main/java/com/sdsu/backend/dto/LoginResponse.java
+--- a/backend/src/main/java/com/sdsu/backend/dto/LoginResponse.java	(revision 1be3b149292ba449f9202ddbe668ff20476440e9)
++++ b/backend/src/main/java/com/sdsu/backend/dto/LoginResponse.java	(date 1765415741750)
+@@ -1,41 +1,27 @@
+ package com.sdsu.backend.dto;
+ 
+ import com.sdsu.backend.model.User;
++import lombok.Getter;
++import lombok.Setter;
+ 
+ public class LoginResponse {
+ 
++    @Getter @Setter
+     private String token;
++
++    @Getter @Setter
+     private Long userId;
++
++    @Getter @Setter
+     private String email;
+ 
+-    public LoginResponse() {}
++    public LoginResponse() {
++        //Default Constructor Required by JPA
++    }
+ 
+     public LoginResponse(String token, Long userId, String email) {
+         this.token = token;
+         this.userId = userId;
+         this.email = email;
+     }
+-
+-    // Getters
+-    public String getToken() {
+-        return token;
+-    }
+-    public Long getUserId() {
+-        return userId;
+-    }
+-    public String getEmail() {
+-        return email;
+-    }
+-
+-    // Setters
+-
+-    public void setToken() {
+-        this.token = token;
+-    }
+-    public void setUserId() {
+-        this.userId = userId;
+-    }
+-    public void setEmail() {
+-        this.email = email;
+-    }
+ }

@@ -9,13 +9,10 @@ public class UpdateEventRequest {
     private String title;
     private String eventType;
     private String date;
+    private Double priority;
 
     @Getter @Setter
     private String startTime;
     @Getter @Setter
     private String endTime;
-
-    private Double priority;
-
-
 }

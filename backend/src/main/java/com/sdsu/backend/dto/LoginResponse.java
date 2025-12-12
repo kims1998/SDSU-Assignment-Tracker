@@ -1,41 +1,27 @@
 package com.sdsu.backend.dto;
 
 import com.sdsu.backend.model.User;
+import lombok.Getter;
+import lombok.Setter;
 
 public class LoginResponse {
 
+    @Getter @Setter
     private String token;
+
+    @Getter @Setter
     private Long userId;
+
+    @Getter @Setter
     private String email;
 
-    public LoginResponse() {}
+    public LoginResponse() {
+        //Default Constructor Required by JPA
+    }
 
     public LoginResponse(String token, Long userId, String email) {
         this.token = token;
         this.userId = userId;
-        this.email = email;
-    }
-
-    // Getters
-    public String getToken() {
-        return token;
-    }
-    public Long getUserId() {
-        return userId;
-    }
-    public String getEmail() {
-        return email;
-    }
-
-    // Setters
-
-    public void setToken() {
-        this.token = token;
-    }
-    public void setUserId() {
-        this.userId = userId;
-    }
-    public void setEmail() {
         this.email = email;
     }
 }

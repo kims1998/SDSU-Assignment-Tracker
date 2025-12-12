@@ -1,17 +1,11 @@
-
-
 /*Logout Button*/
 .logout-container {
-    position: absolute;
-    top: 55px;
-    right: 55px;
-    z-index: 1000
+    position: static;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .logout-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 10px 24px;
     border-radius: 50px;
     background: #fff;
