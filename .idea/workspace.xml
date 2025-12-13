@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ede3b59-a98d-40c9-9021-bbd3052ed95f" name="Changes" comment=".idea stuff">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateCalendarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateCalendarRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateEventRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/CreateEventRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/LoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/UpdateEventRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/UpdateEventRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/UpdateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/sdsu/backend/dto/UpdateUserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Dashboard/Logout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/LoginSignup/LoginSignup.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +177,7 @@
       <workItem from="1765433263988" duration="730000" />
       <workItem from="1765434201834" duration="613000" />
       <workItem from="1765505486473" duration="5283000" />
-      <workItem from="1765510809630" duration="10022000" />
+      <workItem from="1765510809630" duration="17934000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Committing to ensure current branch is proper&quot;">
       <option name="closed" value="true" />

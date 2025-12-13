@@ -566,6 +566,10 @@
 
 /* Stack when displayed on small screens (like phones) */
 @media (max-width: 900px) {
+    .calendar-container {
+        margin-top: 20px;
+    }
+
     .dashboard-main {
         flex-direction: column;   /* stack left + right */
         align-items: stretch;     /* stretch children to full width */
@@ -574,17 +578,13 @@
 
     .dashboard-left,
     .dashboard-right {
-        flex: 0 0 auto;          /* don't try to keep 30%/flex split */
-        width: 100%;             /* full width on small screens */
+        flex: 0 0 auto;
+        width: 100%;
         max-width: 100%;
         box-sizing: border-box;
     }
 
     .events-panel {
-        max-height: none;        /* let it grow naturally */
-    }
-
-    .calendar-container {
-        margin-top: 20px;        /* nice breathing room below events */
+        max-height: none;
     }
 }

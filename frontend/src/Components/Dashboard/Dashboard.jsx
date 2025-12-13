@@ -246,9 +246,11 @@ function Dashboard() {
 
     const formatTime = (dateTimeStr) => {
         const dt = new Date(dateTimeStr);
-        const hr = dt.getHours().toString().padStart(2, '0');
-        const min = dt.getMinutes().toString().padStart(2, '0');
-        return `${hr}:${min}`;
+        return dt.toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,   // <-- forces AM/PM format
+        }).replace(' ', '');
     };
 
     const getTypeLabel = (eventType) => {
@@ -399,7 +401,7 @@ function Dashboard() {
                     {/* Controls */}
                     <div className="controls">
                         <div className="controls-btn-rows">
-                            <button className="btn btn-small" onClick={ showCreateModal }>➕ Add Event</button>
+                            <button className="btn btn-small" onClick={ showCreateModal }>➕ Add New Event</button>
                             <button className="btn btn-small" onClick={ fetchAssignments }>🔄 Refresh</button>
                         </div>
 

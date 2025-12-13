@@ -11,10 +11,9 @@ body {
     flex-direction: column;
     align-items: center;
     margin: auto;
-    background: #fff;
+    background: url(../Assets/school.jpg);
+    background-size: cover;
     padding: 30px;
-    border-radius: 30px; /* Add this for rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header{
@@ -76,7 +75,6 @@ body {
     color: #797979;
     width: 400px;
     height: 50px;
-    font-size: 20px;
 }
 
 .forgot-password{
@@ -95,7 +93,8 @@ body {
 
 .submit-container{
     display: flex;
-    gap: 30px;
+    justify-content: center;
+    gap: 20px;
     margin: 60px auto;
 }
 
@@ -116,4 +115,16 @@ body {
 .gray{
     background: gray;
     color: #676767
+}
+
+.white-box {
+    background: #FFFAFA;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+@Media (max-width: 630px) {
+    .text-sdsu{
+        font-size: 35px;
+    }
 }
